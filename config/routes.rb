@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     delete '/posts/:id' => 'posts#destroy'
 
     get '/images' => 'images#index'
+    post '/images' => 'images#create'
     get '/images/:id' => 'images#show'
+    patch '/images/:id' => 'images#update'
+    delete '/images/:id' => 'images#destroy'
   end
 end
