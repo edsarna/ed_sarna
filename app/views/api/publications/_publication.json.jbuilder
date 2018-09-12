@@ -8,3 +8,5 @@ json.full_text publication.full_text
 json.url publication.url
 json.created_at publication.created_at
 json.updated_at publication.updated_at
+
+json.awards publication.awards
