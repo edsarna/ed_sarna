@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     delete '/readings/:id' => 'readings#destroy'
 
     get '/publications' => 'publications#index'
+    post '/publications' => 'publications#create'
     get '/publications/:id' => 'publications#show'
+    patch '/publications/:id' => 'publications#update'
+    delete '/publications/:id' => 'publications#destroy'
   end
 end
