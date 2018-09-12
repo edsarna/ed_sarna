@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     delete '/publications/:id' => 'publications#destroy'
 
     get '/awards' => 'awards#index'
+    post '/awards' => 'awards#create'
     get '/awards/:id' => 'awards#show'
+    patch '/awards/:id' => 'awards#update'
+    delete '/awards/:id' => 'awards#destroy'
   end
 end
