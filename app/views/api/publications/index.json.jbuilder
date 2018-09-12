@@ -1,0 +1,1 @@
+json.array! @publications, partial: 'publication', as: :publication

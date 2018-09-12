@@ -26,5 +26,8 @@ Rails.application.routes.draw do
     get '/readings/:id' => 'readings#show'
     patch '/readings/:id' => 'readings#update'
     delete '/readings/:id' => 'readings#destroy'
+
+    get '/publications' => 'publications#index'
+    get '/publications/:id' => 'publications#show'
   end
 end
