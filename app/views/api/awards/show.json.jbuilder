@@ -1,0 +1,1 @@
+json.partial! 'award', award: @award
