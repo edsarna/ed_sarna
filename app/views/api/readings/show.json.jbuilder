@@ -1,0 +1,1 @@
+json.partial! 'reading', reading: @reading

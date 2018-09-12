@@ -20,5 +20,8 @@ Rails.application.routes.draw do
     get '/reviews/:id' => 'reviews#show'
     patch '/reviews/:id' => 'reviews#update'
     delete '/reviews/:id' => 'reviews#destroy'
+
+    get '/readings' => 'readings#index'
+    get '/readings/:id' => 'readings#show'
   end
 end
