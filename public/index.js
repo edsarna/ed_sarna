@@ -1,5 +1,22 @@
 /* global Vue, VueRouter, axios */
 
+var PublicationShowPage = {
+  template: "#publication-show-page",
+  data: function() {
+    return {
+      message: "Publication Show Page",
+      publication: {}
+    };
+  },
+  created: function() {
+    axios.get("/api/publications/" + this.$route.params.id).then(function(response) {
+      this.publication = response.data;
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
+
 var PublicationsPage = {
   template: "#publications-page",
   data: function() {
@@ -45,7 +62,8 @@ var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/blog", component: BlogPage },
-    { path: "/publications", component: PublicationsPage }
+    { path: "/publications", component: PublicationsPage },
+    { path: "/publications/:id", component: PublicationShowPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
