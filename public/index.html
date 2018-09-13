@@ -21,6 +21,29 @@
   <div class="vue-component">
 
     <h1>{{ message }}</h1>
+    <a href="/#/blog">Blog</a>
+    <a href="/#/publications">Publications</a>
+
+  </div>
+</template>
+
+<template id="blog-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+
+  </div>
+</template>
+
+<template id="publications-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="publication in publications">
+      <strong>{{ publication.title }}</strong> ({{ publication.media_type }})
+    </div>
 
   </div>
 </template>
