@@ -110,7 +110,7 @@ var PublicationsPage = {
   template: "#publications-page",
   data: function() {
     return {
-      message: "Publications Page!",
+      message: "Stories Page!",
       publications: []
     };
   },

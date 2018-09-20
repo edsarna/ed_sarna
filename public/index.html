@@ -235,6 +235,114 @@
       </div>
     </section>
     <!-- /Section: services -->
+  </div>
+</template>
+
+<template id="blog-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="post in posts">
+      <strong>{{ post.title }}</strong>
+      <p>{{ post.text }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="publications-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <div v-for="publication in publications">
+      <a v-bind:href="'/#/publications/' + publication.id"><strong>
+        {{ publication.title }}
+      </strong></a> ({{ publication.media_type }})
+      <p>
+        {{ publication.short_blurb }}
+      </p>
+    </div>
+
+  </div>
+</template>
+
+<template id="publication-show-page">
+  <div class="vue-component">
+    <div style="padding:25px;">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+        
+          <img href="/#/stories" src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
+        </div>    
+        <div class="col-md-6">
+          <p><strong>{{ publication.title }}</strong></p>
+          <p>{{ publication.long_blurb }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.</p>
+          <blockquote v-if="awardsExist">
+            <div v-for="award in publication.awards">
+              {{ award.title }} - {{ award.text }}
+            </div>
+          </blockquote>
+          <a href="/#/stories" class="btn btn-skin btn-lg btn-scroll">Read Full Story</a>
+        </div>
+      </div>    
+    </div>
+    <div style="padding:25px;">
+    </div>
+  </div>
+</template>
+
+<template id="reviews-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="review in reviews">
+      <strong>{{ review.title }}</strong>
+      <p>A Review of: {{ review.item }}</p>
+      <p>{{ review.text }}</p>
+      <p>Rating: {{ review.rating }}</p>
+      <hr>
+    </div>
+
+  </div>
+</template>
+
+<template id="readings-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="reading in readings">
+      {{ reading }}
+      <a v-bind:href="'https://' + reading.url">{{ reading.title }}</a>
+      <p>{{ reading.text }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="images-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="image in images">
+      <p>{{ image.title }}</p>
+      <img v-bind:src="image.image_url">
+    </div>
+
+  </div>
+</template>
+
+<template id="contact-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <p>Contact Info Here</p>
 
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center">
@@ -305,108 +413,6 @@
       </div>
     </section>
     <!-- /Section: contact -->
-  </div>
-</template>
-
-<template id="blog-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="post in posts">
-      <strong>{{ post.title }}</strong>
-      <p>{{ post.text }}</p>
-    </div>
-
-  </div>
-</template>
-
-<template id="publications-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="publication in publications">
-      <a v-bind:href="'/#/publications/' + publication.id"><strong>
-        {{ publication.title }}
-      </strong></a> ({{ publication.media_type }})
-      <p>
-        {{ publication.short_blurb }}
-      </p>
-    </div>
-
-  </div>
-</template>
-
-<template id="publication-show-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <h3>
-      {{ publication.title }}
-    </h3>
-    <p>
-      {{ publication.long_blurb }}
-    </p>
-    <div v-if="awardsExist">Awards:</div>
-    <div v-for="award in publication.awards">
-      {{ award.title }} - {{ award.text }}
-    </div>
-
-  </div>
-</template>
-
-<template id="reviews-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="review in reviews">
-      <strong>{{ review.title }}</strong>
-      <p>A Review of: {{ review.item }}</p>
-      <p>{{ review.text }}</p>
-      <p>Rating: {{ review.rating }}</p>
-      <hr>
-    </div>
-
-  </div>
-</template>
-
-<template id="readings-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="reading in readings">
-      {{ reading }}
-      <a v-bind:href="'https://' + reading.url">{{ reading.title }}</a>
-      <p>{{ reading.text }}</p>
-    </div>
-
-  </div>
-</template>
-
-<template id="images-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="image in images">
-      <p>{{ image.title }}</p>
-      <img v-bind:src="image.image_url">
-    </div>
-
-  </div>
-</template>
-
-<template id="contact-page">
-  <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <p>Contact Info Here</p>
-
   </div>
 </template>
 
