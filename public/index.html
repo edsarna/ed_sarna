@@ -63,13 +63,13 @@
               <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="#intro">Home</a></li>
-                  <li><a href="#">Stories</a></li>
-      	          <li><a href="#">Blog</a></li>
-                  <li><a href="#">Worldly Reviews</a></li>
-                  <li><a href="#">What I'm Reading</a></li>
-                  <li><a href="#">Photo Gallery</a></li>
-                  <li><a href="#">About Ed</a></li>
-                  <li><a href="#">Contact Ed</a></li>
+                  <li><a href="/#/stories">Stories</a></li>
+      	          <li><a href="/#/blog">Blog</a></li>
+                  <li><a href="/#/reviews">Worldly Reviews</a></li>
+                  <li><a href="/#/readings">What I'm Reading</a></li>
+                  <li><a href="/#/images">Photo Gallery</a></li>
+                  <li><a href="/#/about">About Ed</a></li>
+                  <li><a href="/#/contact">Contact Ed</a></li>
                 </ul>
               </div>
               <!-- /.Navbar-collapse -->
@@ -308,5 +308,119 @@
       </div>
     </section>
     <!-- /Section: contact -->
+  </div>
+</template>
+
+<template id="blog-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="post in posts">
+      <strong>{{ post.title }}</strong>
+      <p>{{ post.text }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="publications-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="publication in publications">
+      <a v-bind:href="'/#/publications/' + publication.id"><strong>
+        {{ publication.title }}
+      </strong></a> ({{ publication.media_type }})
+      <p>
+        {{ publication.short_blurb }}
+      </p>
+    </div>
+
+  </div>
+</template>
+
+<template id="publication-show-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <h3>
+      {{ publication.title }}
+    </h3>
+    <p>
+      {{ publication.long_blurb }}
+    </p>
+    <div v-if="awardsExist">Awards:</div>
+    <div v-for="award in publication.awards">
+      {{ award.title }} - {{ award.text }}
+    </div>
+
+  </div>
+</template>
+
+<template id="reviews-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="review in reviews">
+      <strong>{{ review.title }}</strong>
+      <p>A Review of: {{ review.item }}</p>
+      <p>{{ review.text }}</p>
+      <p>Rating: {{ review.rating }}</p>
+      <hr>
+    </div>
+
+  </div>
+</template>
+
+<template id="readings-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="reading in readings">
+      {{ reading }}
+      <a v-bind:href="'https://' + reading.url">{{ reading.title }}</a>
+      <p>{{ reading.text }}</p>
+    </div>
+
+  </div>
+</template>
+
+<template id="images-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <div v-for="image in images">
+      <p>{{ image.title }}</p>
+      <img v-bind:src="image.image_url">
+    </div>
+
+  </div>
+</template>
+
+<template id="contact-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <p>Contact Info Here</p>
+
+  </div>
+</template>
+
+<template id="about-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+    <a href="/#/">Home</a>
+    <p>
+      Ed Sarna has been a U.S. Marine, actor, director and a number of other things not nearly as challenging. He grew up in Chicago, Illinois, spent more than a decade in Southern California and currently resides outside of Milwaukee, Wisconsin. Ed eventually received a BA in Theatre from California State University, Northridge, after being informed—twice—that he and Illinois State University might not be as good a fit as originally thought. He’s received writing awards in fiction, humor and non-fiction from the Bo Carter Memorial, Jade Ring and Florence Lindemann Humor contests. His short story, BEST DAY EVER, was published in the Creative Wisconsin Literary Journal 2017. He is currently a member of Wisconsin Writer’s Association and Chicago Writer’s Association, where he is a reviewer with their book review service, Windy City Reviews.
+    </p>
+
   </div>
 </template>

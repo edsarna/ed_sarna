@@ -156,7 +156,7 @@ var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/blog", component: BlogPage },
-    { path: "/publications", component: PublicationsPage },
+    { path: "/stories", component: PublicationsPage },
     { path: "/publications/:id", component: PublicationShowPage },
     { path: "/reviews", component: ReviewsPage },
     { path: "/readings", component: ReadingsPage },
