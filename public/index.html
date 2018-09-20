@@ -341,8 +341,17 @@
   <div class="vue-component">
 
     <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <p>Contact Info Here</p>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">Email</div>
+          <div class="col-md-3">Twitter</div>
+          <div class="col-md-3">Facebook</div>
+          <div class="col-md-3">Blog</div>
+        </div>
+      </div>
+    </section>
 
     <!-- Section: contact -->
     <section id="contact" class="home-section text-center">
@@ -353,9 +362,9 @@
               
               <div class="section-heading">
                 <div class="wow bounceInDown" data-wow-delay="0.4s">
-                  <h2>Email or phone are welcome</h2>
+                  <h2>Ask Ed a Question</h2>
                 </div>
-                <p class="wow lightSpeedIn" data-wow-delay="0.3s">Gentleman, introduce your self and get in touch with me privately</p>
+                <p class="wow lightSpeedIn" data-wow-delay="0.3s">I have an autobot that screens out questions with emoticons</p>
               </div>
               
             </div>
@@ -380,7 +389,7 @@
                       Email Address</label>
                     <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="subject">
                         Subject</label>
                     <select id="subject" name="subject" class="form-control" required="required">
@@ -389,23 +398,23 @@
                       <option value="suggestions">Wanna marry you</option>
                       <option value="product">Prom night invitation</option>
                     </select>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                       <label for="name">
-                        Message</label>
+                        Question</label>
                       <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
                         placeholder="Message"></textarea>
                   </div>
 
                   <button type="submit" class="btn btn-skin btn-block" id="btnContactUs">
-                      Send Message</button>
+                      Send</button>
            
                 </div>
               </form>
             
             </div>
             <div class="text-center">
-              <p class="lead"><i class="fa fa-phone"></i> Call me +1 888 9796 88</p>
+              <p class="lead"><i class="fa fa-phone"></i> Please Don't Call Me</p>
             </div>
           </div>
         </div>  
