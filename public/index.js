@@ -4,7 +4,7 @@ var AboutPage = {
   template: "#about-page",
   data: function() {
     return {
-      message: "About Page!",
+      message: "About Ed",
       images: []
     };
   },
@@ -21,7 +21,7 @@ var ContactPage = {
   template: "#contact-page",
   data: function() {
     return {
-      message: "Contact Page!",
+      message: "",
       images: []
     };
   },

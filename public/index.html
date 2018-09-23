@@ -118,7 +118,7 @@
 
 <template id="home-page">
   <div>
-    <!-- Section: about -->
+    <!-- Section: story -->
     <section id="about" class="home-section">
       <div class="container">
         <div class="row">
@@ -154,10 +154,37 @@
         </div>    
       </div>
     </section>
-    <!-- /Section: about -->
+    <!-- /Section: story -->
     
+    <!-- Section: blog -->
+    <section id="about" class="home-section">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>On Ed's Blog: How I Learned to Stop Worrying</strong></p>
+            <p>
+              Now I love the bomb. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. 
+              Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. 
+              Id homero expetendis eam, dictas rationibus ut has.
+            </p>
+            <blockquote>
+              Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
+              Civibus perfecto rationibus id his, est noster nostrud aliquando at.
+            </blockquote>
+            <a href="/#/stories" class="btn btn-skin btn-lg btn-scroll">See More</a>
+          </div>
+          <div class="col-md-6">
+          
+            <img src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
+          </div>    
+        </div>    
+      </div>
+    </section>
+    <!-- /Section: blog -->
+
     <!-- Section: separator -->
-    <section id="separator" class="home-section parallax text-center" data-stellar-background-ratio="0.5">
+    <!-- <section id="separator" class="home-section parallax text-center" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row">
             <div class="col-xs-6 col-sm-3 col-md-3">
@@ -194,7 +221,7 @@
             </div>
         </div>    
       </div>
-    </section>
+    </section> -->
     <!-- /Section: separator -->
     
     
@@ -301,7 +328,7 @@
     <div v-for="review in reviews">
       <strong>{{ review.title }}</strong>
       <p>A Review of: {{ review.item }}</p>
-      <p>{{ review.text }}</p>
+      <p>{{ review.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
       <p>Rating: {{ review.rating }}</p>
       <hr>
     </div>
@@ -317,7 +344,7 @@
     <div v-for="reading in readings">
       {{ reading }}
       <a v-bind:href="'https://' + reading.url">{{ reading.title }}</a>
-      <p>{{ reading.text }}</p>
+      <p>{{ reading.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
     </div>
 
   </div>
@@ -344,10 +371,10 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-3">Email</div>
-          <div class="col-md-3">Twitter</div>
-          <div class="col-md-3">Facebook</div>
-          <div class="col-md-3">Blog</div>
+          <div class="col-md-3" style="text-align:center">Email</div>
+          <div class="col-md-3" style="text-align:center">Twitter</div>
+          <div class="col-md-3" style="text-align:center">Facebook</div>
+          <div class="col-md-3" style="text-align:center">Blog</div>
         </div>
       </div>
     </section>
@@ -426,11 +453,15 @@
 <template id="about-page">
   <div class="vue-component">
 
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <p>
-      Ed Sarna has been a U.S. Marine, actor, director and a number of other things not nearly as challenging. He grew up in Chicago, Illinois, spent more than a decade in Southern California and currently resides outside of Milwaukee, Wisconsin. Ed eventually received a BA in Theatre from California State University, Northridge, after being informed—twice—that he and Illinois State University might not be as good a fit as originally thought. He’s received writing awards in fiction, humor and non-fiction from the Bo Carter Memorial, Jade Ring and Florence Lindemann Humor contests. His short story, BEST DAY EVER, was published in the Creative Wisconsin Literary Journal 2017. He is currently a member of Wisconsin Writer’s Association and Chicago Writer’s Association, where he is a reviewer with their book review service, Windy City Reviews.
-    </p>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-offset-1">
+          <h1>{{ message }}</h1>
+          <p>
+            Ed Sarna has been a U.S. Marine, actor, director and a number of other things not nearly as challenging. He grew up in Chicago, Illinois, spent more than a decade in Southern California and currently resides outside of Milwaukee, Wisconsin. Ed eventually received a BA in Theatre from California State University, Northridge, after being informed—twice—that he and Illinois State University might not be as good a fit as originally thought. He’s received writing awards in fiction, humor and non-fiction from the Bo Carter Memorial, Jade Ring and Florence Lindemann Humor contests. His short story, BEST DAY EVER, was published in the Creative Wisconsin Literary Journal 2017. He is currently a member of Wisconsin Writer’s Association and Chicago Writer’s Association, where he is a reviewer with their book review service, Windy City Reviews.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
