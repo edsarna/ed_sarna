@@ -24,6 +24,7 @@
   	<link href="css/animate.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
   	<link href="color/default.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet" />
   </head>
 
   <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -65,7 +66,7 @@
                   <li><a href="/#/stories">Stories</a></li>
       	          <li><a href="/#/blog">Blog</a></li>
                   <li><a href="/#/reviews">Worldly Reviews</a></li>
-                  <li><a href="/#/readings">What I'm Reading</a></li>
+                  <li><a href="/#/readings">What Ed's Reading</a></li>
                   <li><a href="/#/images">Photo Gallery</a></li>
                   <li><a href="/#/about">About Ed</a></li>
                   <li><a href="/#/contact">Contact Ed</a></li>
@@ -279,17 +280,21 @@
 
 <template id="publications-page">
   <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <div v-for="publication in publications">
-      <a v-bind:href="'/#/publications/' + publication.id"><strong>
-        {{ publication.title }}
-      </strong></a> ({{ publication.media_type }})
-      <p>
-        {{ publication.short_blurb }}
-      </p>
+    <div class="container navbar-room">
+      <div class="row" v-for="publication in publications">
+        <div class="col-sm-2 col-md-offset-1">
+          <img src="img/trees_sky.jpg" class="img-responsive img-rounded small-image" alt="" />
+        </div>
+        <div class="col-lg-8">
+          <a v-bind:href="'/#/publications/' + publication.id"><strong>
+            {{ publication.title }}
+          </strong></a> ({{ publication.media_type }})
+          <p>
+            {{ publication.short_blurb }}
+          </p>
+        </div>
+      </div>
     </div>
-
   </div>
 </template>
 

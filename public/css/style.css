@@ -133,12 +133,12 @@ img.img-responsive {
     outline: 0;
     background-color: rgba(255,255,255,.2);
 }
-.navbar-custom .nav li a:hover,
+/*.navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus,
 .navbar-custom .nav li.active {
     outline: 0;
     background-color: rgba(255,255,255,.2);
-}
+}*/
 
 .navbar-toggle {
     padding: 4px 6px;
@@ -248,8 +248,8 @@ hr {
 ============================ */
 
 .home-section {
-    padding-top: 120px;
-    padding-bottom: 110px;
+    padding-top: 80px;
+    padding-bottom: 10px;
 	display:block;
     position:relative;
     z-index:120;
