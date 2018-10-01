@@ -79,6 +79,14 @@ var ReviewsPage = {
   created: function() {
     axios.get('/api/reviews').then(function(response) {
       this.reviews = response.data;
+      for (var i = 0;i < this.reviews.length; i++) {
+        console.log(this.reviews[i].rating);
+        var ratingArray = [];
+        for (var n = 1; n <= this.reviews[i].rating; n++) {
+          ratingArray.push(n);
+        }
+        this.reviews[i].rating = ratingArray;
+      }
     }.bind(this));
   },
   methods: {},

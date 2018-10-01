@@ -286,9 +286,9 @@
           <img src="img/trees_sky.jpg" class="img-responsive img-rounded small-image" alt="" />
         </div>
         <div class="col-lg-8">
-          <a v-bind:href="'/#/publications/' + publication.id"><strong>
+          <a v-bind:href="'/#/publications/' + publication.id"><span class="bold">
             {{ publication.title }}
-          </strong></a> ({{ publication.media_type }})
+          </span></a> ({{ publication.media_type }})
           <p>
             {{ publication.short_blurb }}
           </p>
@@ -328,14 +328,17 @@
 <template id="reviews-page">
   <div class="vue-component">
 
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="review in reviews">
-      <strong>{{ review.title }}</strong>
-      <p>A Review of: {{ review.item }}</p>
-      <p>{{ review.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
-      <p>Rating: {{ review.rating }}</p>
-      <hr>
+    <div class="container navbar-room">
+      <div class="row space-below" v-for="review in reviews">
+        <div class="col-sm-3 col-md-offset-1">
+          <span class="bold">{{ review.title }}</span>
+          <p>A Review of: {{ review.item }}</p>
+          <p>Rating: <span v-for="star in review.rating" class="yellow">★</span></p>
+        </div>
+        <div class="col-lg-7">
+          {{ review.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.
+        </div>
+      </div>
     </div>
 
   </div>
