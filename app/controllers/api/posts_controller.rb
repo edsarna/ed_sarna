@@ -13,6 +13,11 @@ class Api::PostsController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def last
+    @post = Post.last
+    render 'show.json.jbuilder'
+  end
+
   def show
     @post = Post.find(params[:id])
     render 'show.json.jbuilder'

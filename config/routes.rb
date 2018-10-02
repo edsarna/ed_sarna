@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     get '/posts' => 'posts#index'
     post '/posts' => 'posts#create'
+    get '/posts/last' => 'posts#last'
     get '/posts/:id' => 'posts#show'
     patch '/posts/:id' => 'posts#update'
     delete '/posts/:id' => 'posts#destroy'

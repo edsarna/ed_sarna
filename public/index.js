@@ -152,10 +152,15 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome Ed Sarna's Website!"
+      message: "Welcome Ed Sarna's Website!",
+      post: {}
     };
   },
-  created: function() {},
+  created: function() {
+    axios.get('/api/posts/last').then(function(response) {
+      this.post = response.data;
+    }.bind(this));
+  },
   methods: {},
   computed: {}
 };
@@ -165,7 +170,7 @@ var router = new VueRouter({
     { path: "/", component: HomePage },
     { path: "/blog", component: BlogPage },
     { path: "/stories", component: PublicationsPage },
-    { path: "/publications/:id", component: PublicationShowPage },
+    { path: "/stories/:id", component: PublicationShowPage },
     { path: "/reviews", component: ReviewsPage },
     { path: "/readings", component: ReadingsPage },
     { path: "/images", component: ImagesPage },

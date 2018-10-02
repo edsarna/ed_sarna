@@ -22,7 +22,7 @@
 
     <h1>{{ message }}</h1>
     <a href="/#/blog">Blog</a>
-    <a href="/#/publications">Publications</a>
+    <a href="/#/stories">Publications</a>
     <a href="/#/reviews">Reviews</a>
     <a href="/#/readings">What I'm Reading</a>
     <a href="/#/images">Image Gallery</a>
@@ -51,7 +51,7 @@
     <h1>{{ message }}</h1>
     <a href="/#/">Home</a>
     <div v-for="publication in publications">
-      <a v-bind:href="'/#/publications/' + publication.id"><strong>
+      <a v-bind:href="'/#/stories/' + publication.id"><strong>
         {{ publication.title }}
       </strong></a> ({{ publication.media_type }})
       <p>

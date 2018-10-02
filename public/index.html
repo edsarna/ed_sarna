@@ -163,11 +163,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <p><strong>On Ed's Blog: How I Learned to Stop Worrying</strong></p>
+            <p><strong>On Ed's Blog: {{ post.title }}</strong></p>
             <p>
-              Now I love the bomb. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. 
-              Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. 
-              Id homero expetendis eam, dictas rationibus ut has.
+              {{ post.text }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.
             </p>
             <blockquote>
               Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
@@ -286,7 +284,7 @@
           <img src="img/trees_sky.jpg" class="img-responsive img-rounded small-image" alt="" />
         </div>
         <div class="col-lg-8">
-          <a v-bind:href="'/#/publications/' + publication.id"><span class="bold">
+          <a v-bind:href="'/#/stories/' + publication.id"><span class="bold">
             {{ publication.title }}
           </span></a> ({{ publication.media_type }})
           <p>
