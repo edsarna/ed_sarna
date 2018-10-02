@@ -45,6 +45,7 @@ var ImagesPage = {
   created: function() {
     axios.get('/api/images').then(function(response) {
       this.images = response.data;
+      console.log(this.images);
     }.bind(this));
   },
   methods: {},

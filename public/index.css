@@ -7,12 +7,25 @@
   margin-top: 75px;
 }
 
+.footer-room {
+  margin-bottom: 25px;
+}
+
 .less-padding {
   padding-top: 10px;
 }
 
 .space-below {
   margin-bottom: 40px;
+}
+
+.image-rows {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.gallery-image {
+  height: 250px;
 }
 
 .bold {

@@ -359,12 +359,17 @@
 <template id="images-page">
   <div class="vue-component">
 
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="image in images">
+    <div class="container navbar-room footer-room">
+      <div class="row image-rows">
+        <div class="col-md-4" v-for="image in images">
+          <a v-bind:href="'/#/posts/' + image.post_id"><img v-bind:src="image.image_url" class="gallery-image"></a>
+        </div>
+      </div>
+    </div>
+    <!-- <div v-for="image in images">
       <p>{{ image.title }}</p>
       <img v-bind:src="image.image_url">
-    </div>
+    </div> -->
 
   </div>
 </template>
