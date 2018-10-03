@@ -266,8 +266,19 @@
 <template id="blog-page">
   <div class="vue-component">
 
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
+    <div class="container navbar-room">
+      <div class="row space-below post-rows" v-for="post in posts">
+        <a v-bind:href="'/#/blog/' + post.id">
+          <div class="col-sm-4" v-if="post.images_exist">
+            <img v-bind:src="post.images[0].image_url" class="image-border image-gallery">
+          </div>
+          <div class="col black">
+            <span class="bold">{{ post.title }}</span>
+            <p>{{ post.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has. Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
+          </div>
+        </a>
+      </div>
+    </div>
     <div v-for="post in posts">
       <strong>{{ post.title }}</strong>
       <p>{{ post.text }}</p>
@@ -473,6 +484,25 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+
+<template id="blog-show-page">
+  <div class="vue-component">
+    <div style="padding:25px;">
+    </div>
+    <div class="container">
+      <div v-if="imagesExist">
+        <img v-bind:src="post.images[0].image_url" class="img-rounded footer-room blog-image" alt="" />
+      </div>
+      <div class="black">
+        <p><span class="bold">{{ post.title }}</span></p>
+        <p>{{ post.text }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.</p>
+      </div>   
+    </div>
+    <div style="padding:25px;">
     </div>
   </div>
 </template>

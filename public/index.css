@@ -24,8 +24,23 @@
   margin-right: 20px;
 }
 
+.post-rows {
+  margin-left: 8%;
+  margin-right: 8%;
+  max-height: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .gallery-image {
   height: 250px;
+}
+
+.blog-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .bold {
@@ -34,4 +49,14 @@
 
 .yellow {
   color: #EEE418;
+}
+
+.black {
+  color: black;
+}
+
+.image-border {
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
 }

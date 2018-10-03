@@ -1,5 +1,26 @@
 /* global Vue, VueRouter, axios */
 
+var BlogShowPage = {
+  template: "#blog-show-page",
+  data: function() {
+    return {
+      message: "Blog Show Page",
+      post: {},
+      imagesExist: false
+    };
+  },
+  created: function() {
+    axios.get("/api/posts/" + this.$route.params.id).then(function(response) {
+      this.post = response.data;
+      if (this.post.images[0]) {
+        this.imagesExist = true;
+      }
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
+
 var AboutPage = {
   template: "#about-page",
   data: function() {
@@ -143,6 +164,7 @@ var BlogPage = {
   created: function() {
     axios.get('/api/posts').then(function(response) {
       this.posts = response.data;
+      console.log(this.posts);
     }.bind(this));
   },
   methods: {},
@@ -170,6 +192,7 @@ var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/blog", component: BlogPage },
+    { path: "/blog/:id", component: BlogShowPage },
     { path: "/stories", component: PublicationsPage },
     { path: "/stories/:id", component: PublicationShowPage },
     { path: "/reviews", component: ReviewsPage },
