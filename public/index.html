@@ -355,14 +355,17 @@
 
 <template id="readings-page">
   <div class="vue-component">
-
-    <h1>{{ message }}</h1>
-    <a href="/#/">Home</a>
-    <div v-for="reading in readings">
+    <div class="container navbar-room">
+      <div v-for="reading in readings">
+        <span class="bold">{{ reading.media_type }}: <a v-bind:href="reading.url">{{ reading.title }}</a></span>
+        <p class="black">{{ reading.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
+      </div>
+    </div>
+    <!-- <div v-for="reading in readings">
       {{ reading }}
       <a v-bind:href="'https://' + reading.url">{{ reading.title }}</a>
       <p>{{ reading.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
-    </div>
+    </div> -->
 
   </div>
 </template>

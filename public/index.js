@@ -84,6 +84,9 @@ var ReadingsPage = {
   created: function() {
     axios.get('/api/readings').then(function(response) {
       this.readings = response.data;
+      for (var i = 0; i < this.readings.length; i++) {
+        this.readings[i].media_type = this.readings[i].media_type.charAt(0).toUpperCase() + this.readings[i].media_type.slice(1);
+      }
     }.bind(this));
   },
   methods: {},
