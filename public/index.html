@@ -238,6 +238,19 @@
             </div>
           </div>
         </div>
+        <a href="/#/images">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+              <img v-bind:src="recentImages[0].image_url" class="fit-to-col">
+            </div>
+            <div class="col-md-4">
+              <img v-bind:src="recentImages[2].image_url" class="fit-to-col">
+            </div>
+            <div class="col-md-3">
+              <img v-bind:src="recentImages[1].image_url" class="fit-to-col">
+            </div>
+          </div>
+        </a>
       </div>
 
       <div class="container">
@@ -270,7 +283,7 @@
       <div class="row space-below post-rows" v-for="post in posts">
         <a v-bind:href="'/#/blog/' + post.id">
           <div class="col-sm-4" v-if="post.images_exist">
-            <img v-bind:src="post.images[0].image_url" class="image-border image-gallery">
+            <img v-bind:src="post.images[0].image_url" class="image-border gallery-image">
           </div>
           <div class="col black">
             <span class="bold">{{ post.title }}</span>
@@ -486,7 +499,6 @@
     </div>
   </div>
 </template>
-
 
 <template id="blog-show-page">
   <div class="vue-component">

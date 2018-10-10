@@ -33,7 +33,13 @@
 }
 
 .gallery-image {
-  height: 250px;
+  max-height: 250px;
+  max-width: 100%;
+}
+
+.fit-to-col {
+  max-width: 100%;
+  max-height: 250px;
 }
 
 .blog-image {

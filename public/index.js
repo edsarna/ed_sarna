@@ -179,12 +179,16 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome Ed Sarna's Website!",
-      post: {}
+      post: {},
+      recentImages: []
     };
   },
   created: function() {
     axios.get('/api/posts/last').then(function(response) {
       this.post = response.data;
+    }.bind(this));
+    axios.get('/api/images/recent').then(function(response) {
+      this.recentImages = response.data;
     }.bind(this));
   },
   methods: {},
