@@ -32,6 +32,14 @@
   text-overflow: ellipsis;
 }
 
+.post-rows-edit {
+  margin-left: 8%;
+  margin-right: 8%;
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .gallery-image {
   max-height: 250px;
   max-width: 100%;

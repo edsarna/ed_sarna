@@ -4,10 +4,27 @@ var AdminPage = {
   template: "#admin-page",
   data: function() {
     return {
-      message: "Admin Page"
+      message: "Admin Page",
+      posts: [],
+      readings: [],
+      reviews: [],
+      publications: []
     };
   },
-  created: function() {},
+  created: function() {
+    axios.get('/api/posts').then(function(response) {
+      this.posts = response.data.reverse();
+    }.bind(this));
+    axios.get('/api/readings').then(function(response) {
+      this.readings = response.data.reverse();
+    }.bind(this));
+    axios.get('/api/reviews').then(function(response) {
+      this.reviews = response.data.reverse();
+    }.bind(this));
+    axios.get('/api/publications').then(function(response) {
+      this.publications = response.data.reverse();
+    }.bind(this));
+  },
   methods: {},
   computed: {}
 };
