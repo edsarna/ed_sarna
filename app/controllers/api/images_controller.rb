@@ -14,6 +14,11 @@ class Api::ImagesController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def recent
+    @images = Image.last(3)
+    render 'index.json.jbuilder'
+  end
+
   def show
     @image = Image.find(params[:id])
     render 'show.json.jbuilder'
