@@ -1,5 +1,17 @@
 /* global Vue, VueRouter, axios */
 
+var AdminPage = {
+  template: "#admin-page",
+  data: function() {
+    return {
+      message: "Admin Page"
+    };
+  },
+  created: function() {},
+  methods: {},
+  computed: {}
+};
+
 var BlogShowPage = {
   template: "#blog-show-page",
   data: function() {
@@ -206,7 +218,8 @@ var router = new VueRouter({
     { path: "/readings", component: ReadingsPage },
     { path: "/images", component: ImagesPage },
     { path: "/contact", component: ContactPage },
-    { path: "/about", component: AboutPage }
+    { path: "/about", component: AboutPage },
+    { path: "/edmin", component: AdminPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
