@@ -77,7 +77,7 @@ var ImagesPage = {
   },
   created: function() {
     axios.get('/api/images').then(function(response) {
-      this.images = response.data;
+      this.images = response.data.reverse();
       console.log(this.images);
     }.bind(this));
   },
@@ -95,7 +95,7 @@ var ReadingsPage = {
   },
   created: function() {
     axios.get('/api/readings').then(function(response) {
-      this.readings = response.data;
+      this.readings = response.data.reverse();
       for (var i = 0; i < this.readings.length; i++) {
         this.readings[i].media_type = this.readings[i].media_type.charAt(0).toUpperCase() + this.readings[i].media_type.slice(1);
       }
@@ -115,7 +115,7 @@ var ReviewsPage = {
   },
   created: function() {
     axios.get('/api/reviews').then(function(response) {
-      this.reviews = response.data;
+      this.reviews = response.data.reverse();
       for (var i = 0;i < this.reviews.length; i++) {
         console.log(this.reviews[i].rating);
         var ratingArray = [];
@@ -161,7 +161,7 @@ var PublicationsPage = {
   },
   created: function() {
     axios.get('/api/publications').then(function(response) {
-      this.publications = response.data;
+      this.publications = response.data.reverse();
     }.bind(this));
   },
   methods: {},
@@ -178,7 +178,7 @@ var BlogPage = {
   },
   created: function() {
     axios.get('/api/posts').then(function(response) {
-      this.posts = response.data;
+      this.posts = response.data.reverse();
       console.log(this.posts);
     }.bind(this));
   },
