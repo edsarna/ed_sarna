@@ -106,6 +106,7 @@ var AdminPage = {
       axios.post('/api/posts', params).then(function(response) {
         // console.log(response.data);
         this.posts.unshift(response.data);
+        this.newPost = {title: "", text: ""};
       }.bind(this));
     },
     addReading: function() {
@@ -119,6 +120,7 @@ var AdminPage = {
       axios.post('/api/readings', params).then(function(response) {
         // console.log(response.data);
         this.readings.unshift(response.data);
+        this.newReading = {title: "", author: "", media_type: "", url: "", text: ""};
       }.bind(this));
     },
     addReview: function() {
@@ -131,6 +133,7 @@ var AdminPage = {
       axios.post('/api/reviews', params).then(function(response) {
         // console.log(response.data);
         this.reviews.unshift(response.data);
+        this.newReview = {title: "", item: "", rating: 0, text: ""};
       }.bind(this));
     },
     addPublication: function() {
@@ -146,6 +149,7 @@ var AdminPage = {
       axios.post('/api/publications', params).then(function(response) {
         // console.log(response.data);
         this.publications.unshift(response.data);
+        this.newPublication = {title: "", media_type: "", short_blurb: "", long_blurb: "", url: "", pub_date: "", full_text: ""};
       }.bind(this));
     },
 
