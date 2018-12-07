@@ -59,6 +59,11 @@ var AdminPage = {
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
         // console.log(response.data);
       });
+      if (this.selectedPost.images_exist) {
+        axios.patch('/api/images/' + this.selectedPost.images[0].id, {image_url: this.selectedPost.images[0].image_url}).then(function(response) {
+          console.log('image updated too');
+        });
+      }
     },
     updateReading: function() {
       var params = {

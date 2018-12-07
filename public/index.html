@@ -604,6 +604,10 @@
           <div class="modal-body">
             <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
             <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
+            <div v-if="selectedPost.images_exist">
+              <p>Image URL:</p>
+              <p><input type="text" v-model="selectedPost.images[0].image_url"></p>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
