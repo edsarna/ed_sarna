@@ -14,7 +14,7 @@ var AdminPage = {
       selectedReview: {},
       selectedPublication: {},
       newPost: {title: "", text: ""},
-      newReading: {},
+      newReading: {title: "", author: "", media_type: "", url: "", text: ""},
       newReview: {},
       newPublication: {}
     };
@@ -104,6 +104,19 @@ var AdminPage = {
       axios.post('/api/posts', params).then(function(response) {
         // console.log(response.data);
         this.posts.unshift(response.data);
+      }.bind(this));
+    },
+    addReading: function() {
+      var params = {
+        title: this.newReading.title,
+        author: this.newReading.author,
+        media_type: this.newReading.media_type,
+        url: this.newReading.url,
+        text: this.newReading.text
+      };
+      axios.post('/api/readings', params).then(function(response) {
+        // console.log(response.data);
+        this.readings.unshift(response.data);
       }.bind(this));
     }
   },

@@ -539,7 +539,7 @@
       </div>
     </div>
     <div class="container"> <!-- READINGS -->
-      <h2 class="close-review">Readings</h2><a @click="">Add New</a>
+      <h2 class="close-review">Readings</h2><a data-toggle="modal" data-target="#readingModalAdd">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="reading in readings">
           <div class="col black">
@@ -689,6 +689,27 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="addPost" type="button" class="btn btn-primary" data-dismiss="modal">Save Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Reading Add Modal -->
+    <div class="modal fade" id="readingModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create a Reading</h5>
+          </div>
+          <div class="modal-body">
+            <p>Title:</p><p><input type="text" v-model="newReading.title"></p>
+            <p>Author:</p><p><input type="text" v-model="newReading.author"></p>
+            <p>Media Type:</p><p><input type="text" v-model="newReading.media_type"></p>
+            <p>URL:</p><p><input type="text" v-model="newReading.url"></p>
+            <p>Body:</p><p><textarea rows="8" cols="65" v-model="newReading.text"></textarea></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button @click="addReading" type="button" class="btn btn-primary" data-dismiss="modal">Save Reading</button>
           </div>
         </div>
       </div>
