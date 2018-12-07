@@ -8,7 +8,11 @@ var AdminPage = {
       posts: [],
       readings: [],
       reviews: [],
-      publications: []
+      publications: [],
+      selectedPost: {},
+      selectedReading: {},
+      selectedReview: {},
+      selectedPublication: {}
     };
   },
   created: function() {
@@ -25,7 +29,12 @@ var AdminPage = {
       this.publications = response.data.reverse();
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    selectPost: function(post) {
+      this.selectedPost = post;
+      console.log(this.selectedPost);
+    }
+  },
   computed: {}
 };
 
