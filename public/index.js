@@ -33,6 +33,15 @@ var AdminPage = {
     selectPost: function(post) {
       this.selectedPost = post;
       console.log(this.selectedPost);
+    },
+    updatePost: function() {
+      var params = {
+        title: this.selectedPost.title,
+        text: this.selectedPost.text
+      };
+      axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
+        console.log(response.data);
+      });
     }
   },
   computed: {}
