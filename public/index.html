@@ -576,6 +576,10 @@
           <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
           <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
           <p><span class="bold">URL: </span>{{ publication.url }}</p>
+          <!-- Publication Modal Edit Button -->
+          <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
+            Edit This Story
+          </button></p>
         </div>
       </div>
     </div>
@@ -635,6 +639,29 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updateReview" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Publication Modal -->
+    <div class="modal fade" id="publicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit a Story</h5>
+          </div>
+          <div class="modal-body">
+            <p>Title:</p><p><input type="text" v-model="selectedPublication.title"></p>
+            <p>Media Type:</p><p><input type="text" v-model="selectedPublication.media_type"></p>
+            <p>URL:</p><p><input type="text" v-model="selectedPublication.url"></p>
+            <p>Publication Date:</p><p><input type="date" v-model="selectedPublication.pub_date"></p>
+            <p>Short Blurb:</p><p><textarea rows="4" cols="65" v-model="selectedPublication.short_blurb"></textarea></p>
+            <p>Long Blurb:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.long_blurb"></textarea></p>
+            <p>Full Text:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.full_text"></textarea></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button @click="updatePublication" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

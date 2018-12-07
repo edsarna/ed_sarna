@@ -42,6 +42,10 @@ var AdminPage = {
       this.selectedReview = review;
       // console.log(this.selectedPost);
     },
+    selectPublication: function(publication) {
+      this.selectedPublication = publication;
+      // console.log(this.selectedPost);
+    },
     updatePost: function() {
       var params = {
         title: this.selectedPost.title,
@@ -71,6 +75,20 @@ var AdminPage = {
         text: this.selectedReview.text
       };
       axios.patch('/api/reviews/' + this.selectedReview.id, params).then(function(response) {
+        // console.log(response.data);
+      });
+    },
+    updatePublication: function() {
+      var params = {
+        title: this.selectedPublication.title,
+        media_type: this.selectedPublication.media_type,
+        short_blurb: this.selectedPublication.short_blurb,
+        long_blurb: this.selectedPublication.long_blurb,
+        url: this.selectedPublication.url,
+        pub_date: this.selectedPublication.pub_date,
+        full_text: this.selectedPublication.full_text
+      };
+      axios.patch('/api/publications/' + this.selectedPublication.id, params).then(function(response) {
         // console.log(response.data);
       });
     }
