@@ -118,6 +118,18 @@ var AdminPage = {
         // console.log(response.data);
         this.readings.unshift(response.data);
       }.bind(this));
+    },
+    addReview: function() {
+      var params = {
+        title: this.newReview.title,
+        item: this.newReview.item,
+        rating: this.newReview.rating,
+        text: this.newReview.text
+      };
+      axios.post('/api/reviews', params).then(function(response) {
+        // console.log(response.data);
+        this.reviews.unshift(response.data);
+      }.bind(this));
     }
   },
   computed: {}
