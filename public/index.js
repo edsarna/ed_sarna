@@ -32,7 +32,7 @@ var AdminPage = {
   methods: {
     selectPost: function(post) {
       this.selectedPost = post;
-      console.log(this.selectedPost);
+      // console.log(this.selectedPost);
     },
     updatePost: function() {
       var params = {
@@ -42,6 +42,10 @@ var AdminPage = {
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
         console.log(response.data);
       });
+    },
+    selectReading: function(reading) {
+      this.selectedReading = reading;
+      // console.log(this.selectedReading);
     }
   },
   computed: {}

@@ -74,3 +74,13 @@
   border-width: 5px;
   border-color: black;
 }
+
+/* MODAL STYLING */
+.modal-content {
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.modal {
+  top: 100;
+}

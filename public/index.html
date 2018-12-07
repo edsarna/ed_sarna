@@ -529,9 +529,9 @@
         <div class="col black">
           <span class="bold">{{ post.title }}</span>
           <p>{{ post.text }}</p>
-          <!-- Button trigger modal -->
-          <button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
+          <!-- Post Modal Edit Button -->
+          <button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+            Edit This Post
           </button>
         </div>
       </div>
@@ -542,6 +542,10 @@
         <div class="col black">
           <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
           <p>{{ reading.text }}</p>
+          <!-- Post Modal Edit Button -->
+          <button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
+            Edit This Reading
+          </button>
         </div>
       </div>
     </div>
@@ -568,7 +572,7 @@
       </div>
     </div>
     <!-- Post Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -577,6 +581,27 @@
           <div class="modal-body">
             <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
             <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button @click="updatePost" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Reading Modal -->
+    <div class="modal fade" id="readingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit a Reading</h5>
+          </div>
+          <div class="modal-body">
+            <p>Title:</p><p><input type="text" v-model="selectedReading.title"></p>
+            <p>Author:</p><p><input type="text" v-model="selectedReading.author"></p>
+            <p>Media Type:</p><p><input type="text" v-model="selectedReading.media_type"></p>
+            <p>URL:</p><p><input type="text" v-model="selectedReading.url"></p>
+            <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedReading.text"></textarea></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
