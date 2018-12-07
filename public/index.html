@@ -524,7 +524,7 @@
       <h1 class="bold black navbar-room">{{ message }}</h1>
     </div>
     <div class="container"> <!-- POSTS -->
-      <h2 class="close-review">Posts</h2><a @click="">Add New</a>
+      <h2 class="close-review">Posts</h2><a data-toggle="modal" data-target="#postModalAdd">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="post in posts">
           <div class="col black">
@@ -670,6 +670,25 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updatePublication" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Add Modal -->
+    <div class="modal fade" id="postModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create a Post</h5>
+          </div>
+          <div class="modal-body">
+            <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
+            <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button @click="addPost" type="button" class="btn btn-primary" data-dismiss="modal">Save Post</button>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ var AdminPage = {
       selectedReading: {},
       selectedReview: {},
       selectedPublication: {},
-      newPost: {},
+      newPost: {title: "", text: ""},
       newReading: {},
       newReview: {},
       newPublication: {}
@@ -95,6 +95,16 @@ var AdminPage = {
       axios.patch('/api/publications/' + this.selectedPublication.id, params).then(function(response) {
         // console.log(response.data);
       });
+    },
+    addPost: function() {
+      var params = {
+        title: this.newPost.title,
+        text: this.newPost.text
+      };
+      axios.post('/api/posts', params).then(function(response) {
+        // console.log(response.data);
+        this.posts.unshift(response.data);
+      }.bind(this));
     }
   },
   computed: {}
