@@ -688,10 +688,13 @@
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Create a Post</h5>
           </div>
+
           <div class="modal-body">
             <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
             <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
+            <p>Image Url:</p><p><input type="text" v-model="newPost.image_url"></p>
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="addPost" type="button" class="btn btn-primary" data-dismiss="modal">Save Post</button>

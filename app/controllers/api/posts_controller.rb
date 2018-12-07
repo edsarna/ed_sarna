@@ -33,7 +33,11 @@ class Api::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @images = Image.where(post_id: params[:id])
     @post.destroy
-    render json: {message: "You deleted post #{params[:id]}"}
+    @images.each do |image|
+      image.destroy
+    end
+    render json: {message: "You deleted post #{params[:id]} and all of its images"}
   end
 end
