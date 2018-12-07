@@ -542,10 +542,10 @@
         <div class="col black">
           <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
           <p>{{ reading.text }}</p>
-          <!-- Post Modal Edit Button -->
-          <button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
+          <!-- Reading Modal Edit Button -->
+          <p><button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
             Edit This Reading
-          </button>
+          </button></p>
         </div>
       </div>
     </div>
@@ -553,8 +553,16 @@
       <h2>Reviews</h2>
       <div class="row space-below post-rows-edit" v-for="review in reviews">
         <div class="col black">
-          <span class="bold">{{ review.title }} -- A review of: {{ review.item }} -- Rating: {{ review.rating }}</span>
+          <span class="bold">
+            <p class="close-review">{{ review.title }}</p>
+            <p class="close-review">A review of: {{ review.item }}</p>
+            <p class="close-review">Rating: {{ review.rating }}</p>
+          </span>
           <p>{{ review.text }}</p>
+          <!-- Reivew Modal Edit Button -->
+          <p><button @click="selectReview(review)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+            Edit This Review
+          </button></p>
         </div>
       </div>
     </div>
@@ -571,6 +579,7 @@
         </div>
       </div>
     </div>
+
     <!-- Post Modal -->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -606,6 +615,26 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updateReading" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit a Review</h5>
+          </div>
+          <div class="modal-body">
+            <p>Title:</p><p><input type="text" v-model="selectedReview.title"></p>
+            <p>Item:</p><p><input type="text" v-model="selectedReview.item"></p>
+            <p>Rating:</p><p><input type="text" v-model="selectedReview.rating"></p>
+            <p>Review:</p><p><textarea rows="8" cols="65" v-model="selectedReview.text"></textarea></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button @click="updateReview" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

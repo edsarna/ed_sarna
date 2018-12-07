@@ -43,6 +43,10 @@
   overflow: hidden;
 }
 
+.close-review {
+  margin: 0px;
+}
+
 .gallery-image {
   max-height: 250px;
   max-width: 100%;

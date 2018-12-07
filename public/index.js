@@ -34,6 +34,14 @@ var AdminPage = {
       this.selectedPost = post;
       // console.log(this.selectedPost);
     },
+    selectReading: function(reading) {
+      this.selectedReading = reading;
+      // console.log(this.selectedReading);
+    },
+    selectReview: function(review) {
+      this.selectedReview = review;
+      // console.log(this.selectedPost);
+    },
     updatePost: function() {
       var params = {
         title: this.selectedPost.title,
@@ -42,10 +50,6 @@ var AdminPage = {
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
         // console.log(response.data);
       });
-    },
-    selectReading: function(reading) {
-      this.selectedReading = reading;
-      // console.log(this.selectedReading);
     },
     updateReading: function() {
       var params = {
@@ -56,6 +60,17 @@ var AdminPage = {
         text: this.selectedReading.text
       };
       axios.patch('/api/readings/' + this.selectedReading.id, params).then(function(response) {
+        // console.log(response.data);
+      });
+    },
+    updateReview: function() {
+      var params = {
+        title: this.selectedReview.title,
+        item: this.selectedReview.item,
+        rating: this.selectedReview.rating,
+        text: this.selectedReview.text
+      };
+      axios.patch('/api/reviews/' + this.selectedReview.id, params).then(function(response) {
         // console.log(response.data);
       });
     }
