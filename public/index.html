@@ -592,6 +592,8 @@
       </div>
     </div>
 
+
+
     <!-- Post Edit Modal -->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -606,6 +608,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updatePost" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button @click="deletePost" type="button" class="btn btn-danger" data-dismiss="modal">Delete Post</button>
           </div>
         </div>
       </div>
@@ -627,6 +630,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updateReading" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button @click="deleteReading" type="button" class="btn btn-danger" data-dismiss="modal">Delete Reading</button>
           </div>
         </div>
       </div>
@@ -647,6 +651,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updateReview" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button @click="deleteReview" type="button" class="btn btn-danger" data-dismiss="modal">Delete Review</button>
           </div>
         </div>
       </div>
@@ -670,6 +675,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button @click="updatePublication" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button @click="deletePublication" type="button" class="btn btn-danger" data-dismiss="modal">Delete Story</button>
           </div>
         </div>
       </div>

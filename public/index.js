@@ -50,6 +50,7 @@ var AdminPage = {
       this.selectedPublication = publication;
       // console.log(this.selectedPost);
     },
+
     updatePost: function() {
       var params = {
         title: this.selectedPost.title,
@@ -96,6 +97,7 @@ var AdminPage = {
         // console.log(response.data);
       });
     },
+
     addPost: function() {
       var params = {
         title: this.newPost.title,
@@ -144,6 +146,31 @@ var AdminPage = {
       axios.post('/api/publications', params).then(function(response) {
         // console.log(response.data);
         this.publications.unshift(response.data);
+      }.bind(this));
+    },
+
+    deletePost: function() {
+      axios.delete('/api/posts/' + this.selectedPost.id).then(function(response) {
+        console.log(response.data);
+        this.posts.splice(this.posts.indexOf(this.selectedPost), 1);
+      }.bind(this));
+    },
+    deleteReading: function() {
+      axios.delete('/api/readings/' + this.selectedReading.id).then(function(response) {
+        console.log(response.data);
+        this.readings.splice(this.readings.indexOf(this.selectedReading), 1);
+      }.bind(this));
+    },
+    deleteReview: function() {
+      axios.delete('/api/reviews/' + this.selectedReview.id).then(function(response) {
+        console.log(response.data);
+        this.reviews.splice(this.reviews.indexOf(this.selectedReview), 1);
+      }.bind(this));
+    },
+    deletePublication: function() {
+      axios.delete('/api/publications/' + this.selectedPublication.id).then(function(response) {
+        console.log(response.data);
+        this.publications.splice(this.publications.indexOf(this.selectedPublication), 1);
       }.bind(this));
     }
   },
