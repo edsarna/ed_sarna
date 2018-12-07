@@ -12,7 +12,11 @@ var AdminPage = {
       selectedPost: {},
       selectedReading: {},
       selectedReview: {},
-      selectedPublication: {}
+      selectedPublication: {},
+      newPost: {},
+      newReading: {},
+      newReview: {},
+      newPublication: {}
     };
   },
   created: function() {

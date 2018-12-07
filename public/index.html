@@ -524,67 +524,75 @@
       <h1 class="bold black navbar-room">{{ message }}</h1>
     </div>
     <div class="container"> <!-- POSTS -->
-      <h2>Posts</h2>
-      <div class="row space-below post-rows-edit" v-for="post in posts">
-        <div class="col black">
-          <span class="bold">{{ post.title }}</span>
-          <p class="post-rows-edit-text">{{ post.text }}</p>
-          <!-- Post Modal Edit Button -->
-          <p><button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
-            Edit This Post
-          </button></p>
+      <h2 class="close-review">Posts</h2><a @click="">Add New</a>
+      <div class="admin-section">
+        <div class="row space-below post-rows-edit" v-for="post in posts">
+          <div class="col black">
+            <span class="bold">{{ post.title }}</span>
+            <p class="post-rows-edit-text">{{ post.text }}</p>
+            <!-- Post Modal Edit Button -->
+            <p><button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+              Edit This Post
+            </button></p>
+          </div>
         </div>
       </div>
     </div>
     <div class="container"> <!-- READINGS -->
-      <h2>Readings</h2>
-      <div class="row space-below post-rows-edit" v-for="reading in readings">
-        <div class="col black">
-          <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
-          <p>{{ reading.text }}</p>
-          <!-- Reading Modal Edit Button -->
-          <p><button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
-            Edit This Reading
-          </button></p>
+      <h2 class="close-review">Readings</h2><a @click="">Add New</a>
+      <div class="admin-section">
+        <div class="row space-below post-rows-edit" v-for="reading in readings">
+          <div class="col black">
+            <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
+            <p>{{ reading.text }}</p>
+            <!-- Reading Modal Edit Button -->
+            <p><button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
+              Edit This Reading
+            </button></p>
+          </div>
         </div>
       </div>
     </div>
     <div class="container"> <!-- REVIEWS -->
-      <h2>Reviews</h2>
-      <div class="row space-below post-rows-edit" v-for="review in reviews">
-        <div class="col black">
-          <span class="bold">
-            <p class="close-review">{{ review.title }}</p>
-            <p class="close-review">A review of: {{ review.item }}</p>
-            <p class="close-review">Rating: {{ review.rating }}</p>
-          </span>
-          <p>{{ review.text }}</p>
-          <!-- Reivew Modal Edit Button -->
-          <p><button @click="selectReview(review)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-            Edit This Review
-          </button></p>
+      <h2 class="close-review">Reviews</h2><a @click="">Add New</a>
+      <div class="admin-section">
+        <div class="row space-below post-rows-edit" v-for="review in reviews">
+          <div class="col black">
+            <span class="bold">
+              <p class="close-review">{{ review.title }}</p>
+              <p class="close-review">A review of: {{ review.item }}</p>
+              <p class="close-review">Rating: {{ review.rating }}</p>
+            </span>
+            <p>{{ review.text }}</p>
+            <!-- Reivew Modal Edit Button -->
+            <p><button @click="selectReview(review)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+              Edit This Review
+            </button></p>
+          </div>
         </div>
       </div>
     </div>
     <div class="container"> <!-- STORIES -->
-      <h2>Stories</h2>
-      <div class="row space-below post-rows-edit" v-for="publication in publications">
-        <div class="col black">
-          <span class="bold">{{ publication.title }} ({{ publication.media_type }})</span>
-          <p><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
-          <p><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
-          <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
-          <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
-          <p><span class="bold">URL: </span>{{ publication.url }}</p>
-          <!-- Publication Modal Edit Button -->
-          <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
-            Edit This Story
-          </button></p>
+      <h2 class="close-review">Stories</h2><a @click="">Add New</a>
+      <div class="admin-section">
+        <div class="row space-below post-rows-edit" v-for="publication in publications">
+          <div class="col black">
+            <span class="bold">{{ publication.title }} ({{ publication.media_type }})</span>
+            <p><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
+            <p><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
+            <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
+            <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
+            <p><span class="bold">URL: </span>{{ publication.url }}</p>
+            <!-- Publication Modal Edit Button -->
+            <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
+              Edit This Story
+            </button></p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Post Modal -->
+    <!-- Post Edit Modal -->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -602,7 +610,7 @@
         </div>
       </div>
     </div>
-    <!-- Reading Modal -->
+    <!-- Reading Edit Modal -->
     <div class="modal fade" id="readingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -623,7 +631,7 @@
         </div>
       </div>
     </div>
-    <!-- Review Modal -->
+    <!-- Review Edit Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -643,7 +651,7 @@
         </div>
       </div>
     </div>
-    <!-- Publication Modal -->
+    <!-- Publication Edit Modal -->
     <div class="modal fade" id="publicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
