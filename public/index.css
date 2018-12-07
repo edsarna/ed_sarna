@@ -35,9 +35,12 @@
 .post-rows-edit {
   margin-left: 8%;
   margin-right: 8%;
+  overflow: hidden;
+}
+
+.post-rows-edit-text {
   max-height: 200px;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .gallery-image {

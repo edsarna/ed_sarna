@@ -528,11 +528,11 @@
       <div class="row space-below post-rows-edit" v-for="post in posts">
         <div class="col black">
           <span class="bold">{{ post.title }}</span>
-          <p>{{ post.text }}</p>
+          <p class="post-rows-edit-text">{{ post.text }}</p>
           <!-- Post Modal Edit Button -->
-          <button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+          <p><button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
             Edit This Post
-          </button>
+          </button></p>
         </div>
       </div>
     </div>
@@ -605,7 +605,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="updatePost" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button @click="updateReading" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

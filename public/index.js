@@ -40,12 +40,24 @@ var AdminPage = {
         text: this.selectedPost.text
       };
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
       });
     },
     selectReading: function(reading) {
       this.selectedReading = reading;
       // console.log(this.selectedReading);
+    },
+    updateReading: function() {
+      var params = {
+        title: this.selectedReading.title,
+        author: this.selectedReading.author,
+        media_type: this.selectedReading.media_type,
+        url: this.selectedReading.url,
+        text: this.selectedReading.text
+      };
+      axios.patch('/api/readings/' + this.selectedReading.id, params).then(function(response) {
+        // console.log(response.data);
+      });
     }
   },
   computed: {}
