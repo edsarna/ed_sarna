@@ -4,8 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up, <%= @user.email %>!</h1>
-    <p>Thanks for joining and have a great day! Now sign in and do
-awesome things!</p>
+    <h1>Hi, <%= @user.name || @user.email %>!</h1>
+    <p>You have signed up to receive emails whenever Ed Sarna posts some new content to his blog. If you don't remember doing this, someone is likely stealing your identity - email ed@edsarna.com, and we'll get you removed from the list right away.</p>
   </body>
 </html>
