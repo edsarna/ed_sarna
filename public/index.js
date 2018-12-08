@@ -243,7 +243,10 @@ var ContactPage = {
       images: [],
       name: "",
       email: "",
-      errors: []
+      errors: [],
+      inputName: null,
+      inputEmail: null,
+      inputMessage: null
     };
   },
   created: function() {
@@ -268,6 +271,19 @@ var ContactPage = {
       } else {
         this.errors.push('Your email needs an @');
       }
+    },
+    submitForm: function() {
+      // console.log(this.inputName);
+      // console.log(this.inputEmail);
+      // console.log(this.inputMessage);
+      var params = {
+        name: this.inputName,
+        email: this.inputName,
+        text: this.inputMessage
+      };
+      axios.post('/api/questions', params).then(function(response) {
+        console.log('question sent');
+      });
     }
   },
   computed: {}

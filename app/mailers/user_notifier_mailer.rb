@@ -14,5 +14,12 @@ class UserNotifierMailer < ApplicationMailer
       mail( :to => @user.email,
         :subject => 'New Post from Ed Sarna' )
     end
+
+    def send_question_email(question)
+      @question = question
+      mail( :to => 'ed@edsarna.com',
+        :from => "#{@question.email}",
+        :subject => "New Question from #{@question.name}" )
+    end
   end
 end
