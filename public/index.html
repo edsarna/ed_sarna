@@ -136,7 +136,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-          
+
             <img src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
           </div>    
           <div class="col-md-6">
@@ -160,18 +160,15 @@
         <div class="row">
           <div class="col-md-6">
             <p><strong>On Ed's Blog: {{ post.title }}</strong></p>
-            <p>
-              {{ post.text }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.
+            <p class="home-post">
+              {{ post.text }}
             </p>
-            <blockquote>
-              Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
-              Civibus perfecto rationibus id his, est noster nostrud aliquando at.
-            </blockquote>
             <a href="/#/blog" class="btn btn-skin btn-lg btn-scroll">See More</a>
           </div>
           <div class="col-md-6">
           
-            <img src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
+            <img v-if="postImage" :src="postImage" class="img-responsive img-rounded" alt="" />
+            <img v-else src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
           </div>    
         </div>    
       </div>
@@ -249,7 +246,7 @@
         </a>
       </div>
 
-      <div class="container">
+      <!-- <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12" >
             <div class="wow bounceInUp" data-wow-delay="0.4s">
@@ -266,7 +263,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </section>
     <!-- /Section: services -->
   </div>

@@ -113,14 +113,16 @@ var AdminPage = {
         this.posts.unshift(response.data);
         this.newPost.title = "";
         this.newPost.text = "";
-        var imageParams = {
-          image_url: this.newPost.image_url,
-          post_id: response.data.id
-        };
-        axios.post('/api/images', imageParams).then(function(response) {
-          // console.log(response.data);
-          this.newPost.image_url = "";
-        }.bind(this));
+        if (this.newPost.image_url !== "") {
+          var imageParams = {
+            image_url: this.newPost.image_url,
+            post_id: response.data.id
+          };
+          axios.post('/api/images', imageParams).then(function(response) {
+            // console.log(response.data);
+            this.newPost.image_url = "";
+          }.bind(this));
+        }
       }.bind(this));
     },
     addReading: function() {
@@ -375,13 +377,18 @@ var HomePage = {
     return {
       message: "Welcome Ed Sarna's Website!",
       post: {},
+      postImage: null,
       story: {},
-      recentImages: []
+      recentImages: [{image_url: ""},{image_url: ""},{image_url: ""}]
     };
   },
   created: function() {
     axios.get('/api/posts/last').then(function(response) {
+      console.log(response.data);
       this.post = response.data;
+      if (this.post.images) {
+        this.postImage = this.post.images[0].image_url;
+      }
     }.bind(this));
     axios.get('/api/images/recent').then(function(response) {
       this.recentImages = response.data;
