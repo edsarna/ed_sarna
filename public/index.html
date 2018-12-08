@@ -515,16 +515,25 @@
         <img v-bind:src="post.images[0].image_url" class="img-rounded footer-room blog-image" alt="" />
       </div>
       <div class="black">
-        <p><span class="bold">{{ post.title }}</span></p>
+        <h1><span class="bold">{{ post.title }}</span></h1>
         <p>{{ post.text }}</p>
       </div>
+      <hr>
+      <h3 v-if="commentsExist">Comments</h3>
       <div v-for="comment in post.comments" class="bootstrap-card black card-body">
         <p class="bold">{{ comment.commenter }}</p>
         <p>{{ comment.comment }}<p>
       </div>
-      <div>
-        <p><input type="text" v-model="commentName"></p>
-        <p><textarea v-model="commentComment"></textarea></p>
+      <div class="space-above black">
+        <h3 class="close-review">Leave a Comment</h3>
+        <p class="close-review">Your Name:</p>
+        <p class="close-review"><input type="text" v-model="commentName"></p>
+        <p class="close-review">Your Comment:</p>
+        <p class="close-review"><textarea cols="50" rows="4" v-model="commentComment"></textarea></p>
+        <button @click="submitComment" type="button" class="btn btn-primary">
+                Submit Comment
+              </button>
+        <p class="close-review">{{ commentMessage }}</p>
       </div>   
     </div>
   </div>

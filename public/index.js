@@ -218,8 +218,10 @@ var BlogShowPage = {
   data: function() {
     return {
       message: "Blog Show Page",
+      commentMessage: "Please note: comments must be approved before they are displayed to the public.",
       post: {},
       imagesExist: false,
+      commentsExist: false,
       commentName: "",
       commentComment: ""
     };
@@ -230,9 +232,27 @@ var BlogShowPage = {
       if (this.post.images[0]) {
         this.imagesExist = true;
       }
+      if (this.post.comments[0]) {
+        console.log(this.post.comments);
+        console.log(this.post.comments[0]);
+        this.commentsExist = true;
+      }
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    submitComment: function() {
+      var params = {
+        commenter: this.commentName,
+        comment: this.commentComment,
+        post_id: this.post.id
+      };
+      axios.post('/api/comments', params).then(function(response) {
+        this.commentMessage = "Your comment has been submitted and is pending approval.";
+        this.commentName = "";
+        this.commentComment = "";
+      }.bind(this));
+    }
+  },
   computed: {}
 };
 
