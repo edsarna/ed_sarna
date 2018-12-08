@@ -535,6 +535,27 @@
     <div class="container">
       <h1 class="bold black navbar-room">{{ message }}</h1>
     </div>
+    <div class="container"> <!-- COMMENTS -->
+      <h2 class="close-review">Comments Pending Approval</h2>
+      <div class="admin-section">
+        <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
+          <div class="col black">
+            <span class="bold">Posted by: {{ comment.commenter }}</span>
+            <span class="bold">(In reference to: {{ comment.post.title }})</span>
+            <p class="post-rows-edit-text">{{ comment.comment }}</p>
+            <!-- Post Modal Edit Button -->
+            <p>
+              <button @click="approveComment(comment)" type="button" class="btn btn-success">
+                Approve This Comment
+              </button>
+              <button @click="deleteComment(comment)" type="button" class="btn btn-danger">
+                Delete This Comment
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container"> <!-- POSTS -->
       <h2 class="close-review">Posts</h2><a data-toggle="modal" data-target="#postModalAdd">Add New</a>
       <div class="admin-section">

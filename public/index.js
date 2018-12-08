@@ -5,6 +5,7 @@ var AdminPage = {
   data: function() {
     return {
       message: "Admin Page",
+      unapprovedComments: [],
       posts: [],
       readings: [],
       reviews: [],
@@ -31,6 +32,10 @@ var AdminPage = {
     }.bind(this));
     axios.get('/api/publications').then(function(response) {
       this.publications = response.data.reverse();
+    }.bind(this));
+    axios.get('/api/comments').then(function(response) {
+      this.unapprovedComments = response.data.reverse();
+      console.log(this.unapprovedComments);
     }.bind(this));
   },
   methods: {
@@ -191,6 +196,17 @@ var AdminPage = {
       axios.delete('/api/publications/' + this.selectedPublication.id).then(function(response) {
         console.log(response.data);
         this.publications.splice(this.publications.indexOf(this.selectedPublication), 1);
+      }.bind(this));
+    },
+
+    approveComment: function(comment) {
+      axios.patch('/api/comments/' + comment.id).then(function(response) {
+        this.unapprovedComments.splice(this.unapprovedComments.indexOf(comment), 1);
+      }.bind(this));
+    },
+    deleteComment: function(comment) {
+      axios.delete('/api/comments/' + comment.id).then(function(response) {
+        this.unapprovedComments.splice(this.unapprovedComments.indexOf(comment), 1);
       }.bind(this));
     }
   },
