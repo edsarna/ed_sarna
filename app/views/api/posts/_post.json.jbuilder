@@ -5,4 +5,5 @@ json.created_at post.created_at
 json.updated_at post.updated_at
 
 json.images post.images
+json.comments post.comments
 json.images_exist post.images_exist
