@@ -63,6 +63,11 @@
   text-overflow: ellipsis;
 }
 
+.reading-rows {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
 div.admin-section {
   max-height: 300px;
   overflow: scroll;

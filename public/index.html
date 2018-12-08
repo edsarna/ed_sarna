@@ -347,14 +347,14 @@
   <div class="vue-component">
 
     <div class="container navbar-room">
-      <div class="row space-below" v-for="review in reviews">
-        <div class="col-sm-3 col-md-offset-1">
+      <div class="row space-below reading-rows" v-for="review in reviews">
+        <div class="col-sm-3">
           <span class="bold">{{ review.title }}</span>
           <p>A Review of: {{ review.item }}</p>
           <p>Rating: <span v-for="star in review.rating" class="yellow">★</span></p>
         </div>
         <div class="col-lg-7">
-          {{ review.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.
+          {{ review.text }}
         </div>
       </div>
     </div>
@@ -365,9 +365,9 @@
 <template id="readings-page">
   <div class="vue-component">
     <div class="container navbar-room">
-      <div v-for="reading in readings">
+      <div v-for="reading in readings" class=" reading-rows">
         <span class="bold">{{ reading.media_type }}: <a v-bind:href="reading.url">{{ reading.title }}</a></span>
-        <p class="black">{{ reading.text }} Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. Id homero expetendis eam, dictas rationibus ut has.</p>
+        <p class="black">{{ reading.text }}</p>
       </div>
     </div>
     <!-- <div v-for="reading in readings">
