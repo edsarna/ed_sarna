@@ -1,6 +1,5 @@
 class Api::PostsController < ApplicationController
   def index
-    UserNotifier.send_signup_email(User.first).deliver
     @posts = Post.all
     render 'index.json.jbuilder'
   end
@@ -10,8 +9,13 @@ class Api::PostsController < ApplicationController
       title: params[:title],
       text: params[:text]  
     )
-    @post.save
-    render 'show.json.jbuilder'
+    if @post.save
+      users = User.all
+      users.each do |user|
+        UserNotifierMailer::UserNotifier.send_notification_email(user).deliver
+      end
+      render 'show.json.jbuilder'
+    end
   end
 
   def last
