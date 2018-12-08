@@ -1,4 +1,9 @@
 class Api::CommentsController < ApplicationController
+  def index
+    @comments = Comment.where(approved: false)
+    render 'index.json.jbuilder'
+  end
+
   def create
     @comment = Comment.new(
       commenter: params[:commenter],
