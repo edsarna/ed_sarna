@@ -45,5 +45,7 @@ Rails.application.routes.draw do
     post '/users' => 'users#create'
 
     post '/questions' => 'questions#create'
+
+    post '/comments' => 'comments#create'
   end
 end
