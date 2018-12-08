@@ -41,5 +41,7 @@ Rails.application.routes.draw do
     get '/awards/:id' => 'awards#show'
     patch '/awards/:id' => 'awards#update'
     delete '/awards/:id' => 'awards#destroy'
+
+    post '/users' => 'users#create'
   end
 end

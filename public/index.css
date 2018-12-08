@@ -19,6 +19,10 @@
   margin-bottom: 40px;
 }
 
+.space-above {
+  margin-top: 30px;
+}
+
 .image-rows {
   margin-left: 20px;
   margin-right: 20px;
@@ -27,6 +31,10 @@
 .home-post {
   max-height: 225px;
   overflow: hidden;
+}
+
+.post-image-home {
+  width: 100%;
 }
 
 .bootstrap-card {
@@ -113,6 +121,13 @@ div.admin-section {
   border-style: solid;
   border-width: 5px;
   border-color: black;
+}
+
+.about-image {
+  float: right;
+  width: 300px;
+  transform: rotate(90deg);
+  border-radius: 0.5rem;
 }
 
 /* MODAL STYLING */

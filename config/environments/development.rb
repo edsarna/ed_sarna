@@ -58,4 +58,17 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  Pony.options = {
+    :via => :smtp,
+    :via_options => {
+      :address => 'smtp.sendgrid.net',
+      :port => '587',
+      :domain => 'myapp.com',
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  }
 end

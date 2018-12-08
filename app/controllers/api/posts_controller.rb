@@ -1,5 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
+    UserNotifier.send_signup_email(User.first).deliver
     @posts = Post.all
     render 'index.json.jbuilder'
   end
