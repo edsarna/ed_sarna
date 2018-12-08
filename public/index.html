@@ -516,10 +516,16 @@
       </div>
       <div class="black">
         <p><span class="bold">{{ post.title }}</span></p>
-        <p>{{ post.text }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.</p>
+        <p>{{ post.text }}</p>
+      </div>
+      <div v-for="comment in post.comments" class="bootstrap-card black card-body">
+        <p class="bold">{{ comment.commenter }}</p>
+        <p>{{ comment.comment }}<p>
+      </div>
+      <div>
+        <p><input type="text" v-model="commentName"></p>
+        <p><textarea v-model="commentComment"></textarea></p>
       </div>   
-    </div>
-    <div style="padding:25px;">
     </div>
   </div>
 </template>

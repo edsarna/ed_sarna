@@ -203,7 +203,9 @@ var BlogShowPage = {
     return {
       message: "Blog Show Page",
       post: {},
-      imagesExist: false
+      imagesExist: false,
+      commentName: "",
+      commentComment: ""
     };
   },
   created: function() {
