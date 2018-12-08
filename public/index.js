@@ -384,9 +384,8 @@ var HomePage = {
   },
   created: function() {
     axios.get('/api/posts/last').then(function(response) {
-      console.log(response.data);
       this.post = response.data;
-      if (this.post.images) {
+      if (this.post.images && this.post.images.length > 0) {
         this.postImage = this.post.images[0].image_url;
       }
     }.bind(this));
