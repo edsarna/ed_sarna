@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   def images_exist
     images.length > 0
   end
+
+  def approved_comments
+    comments.where(approved: true)
+  end
 end
