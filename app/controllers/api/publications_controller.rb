@@ -18,6 +18,11 @@ class Api::PublicationsController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def last
+    @publication = Publication.last
+    render 'show.json.jbuilder'
+  end
+
   def show
     @publication = Publication.find(params[:id])
     render 'show.json.jbuilder'

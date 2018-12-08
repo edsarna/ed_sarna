@@ -140,15 +140,11 @@
             <img src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
           </div>    
           <div class="col-md-6">
-            <p><strong>Read Ed Sarna's New Story</strong></p>
-            <p>
-              Lorem ipsum dolor sit amet, ei purto tamquam ceteros his, eos in graece posidonium. 
-              Ex nullam vidisse salutatus sed, ea persius phaedrum tincidunt vel. Option virtute nonumes ne est. 
-              Id homero expetendis eam, dictas rationibus ut has.
-            </p>
+            <p>Read Ed Sarna's New Story...</p>
+            <p><strong>{{ story.title }}</strong></p>
+            <!-- <p>{{ story.short_blurb }}</p> -->
             <blockquote>
-              Pri pertinacia elaboraret te, an eirmod delicatissimi nec. Eu liber quodsi maiorum mei. 
-              Civibus perfecto rationibus id his, est noster nostrud aliquando at.
+              {{ story.short_blurb }}
             </blockquote>
             <a href="/#/stories" class="btn btn-skin btn-lg btn-scroll">Read Now</a>
           </div>

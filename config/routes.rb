@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     get '/posts' => 'posts#index'
     post '/posts' => 'posts#create'
-    get '/posts/last' => 'posts#last'
+    get '/posts/last' => 'posts#last' # not RESTful
     get '/posts/:id' => 'posts#show'
     patch '/posts/:id' => 'posts#update'
     delete '/posts/:id' => 'posts#destroy'
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     get '/publications' => 'publications#index'
     post '/publications' => 'publications#create'
+    get '/publications/last' => 'publications#last' # not RESTful
     get '/publications/:id' => 'publications#show'
     patch '/publications/:id' => 'publications#update'
     delete '/publications/:id' => 'publications#destroy'
