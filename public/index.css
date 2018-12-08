@@ -117,6 +117,10 @@ div.admin-section {
   color: black;
 }
 
+.red {
+  color: red;
+}
+
 .image-border {
   border-style: solid;
   border-width: 5px;
@@ -128,6 +132,10 @@ div.admin-section {
   width: 300px;
   transform: rotate(90deg);
   border-radius: 0.5rem;
+}
+
+.subscription-input {
+  margin-right: 20px;
 }
 
 /* MODAL STYLING */

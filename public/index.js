@@ -240,7 +240,10 @@ var ContactPage = {
   data: function() {
     return {
       message: "",
-      images: []
+      images: [],
+      name: "",
+      email: "",
+      errors: []
     };
   },
   created: function() {
@@ -248,7 +251,25 @@ var ContactPage = {
       this.images = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    addSubscriber: function() {
+      if (this.name === "Ed Sarna") {
+        this.errors.push('Imposter!');
+      }
+      if (this.email.indexOf('@') >= 0) {
+        var params = {
+          name: this.name,
+          email: this.email
+        };
+        axios.post('/api/users', params).then(function(response) {
+          this.name = "";
+          this.email = "";
+        }.bind(this));
+      } else {
+        this.errors.push('Your email needs an @');
+      }
+    }
+  },
   computed: {}
 };
 
