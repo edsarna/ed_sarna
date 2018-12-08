@@ -24,6 +24,24 @@
   margin-right: 20px;
 }
 
+.bootstrap-card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.card-body {
+  padding: 20px;
+}
+
 .post-rows {
   margin-left: 8%;
   margin-right: 8%;
