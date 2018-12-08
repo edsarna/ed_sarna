@@ -47,5 +47,7 @@ Rails.application.routes.draw do
     post '/questions' => 'questions#create'
 
     post '/comments' => 'comments#create'
+    patch '/comments/:id' => 'comments#update'
+    delete '/comments/:id' => 'comments#destroy'
   end
 end
