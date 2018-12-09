@@ -143,12 +143,17 @@ div.admin-section {
   margin-right: 20px;
 }
 
+.subscription-section {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 /* MODAL STYLING */
 .modal-content {
   max-height: 500px;
   overflow: scroll;
 }
 
-.modal {
-  top: 100;
+.modal-dialog {
+  padding-top: 5%;
 }
