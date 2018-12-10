@@ -148,6 +148,10 @@ div.admin-section {
   margin-right: 10%;
 }
 
+.add-new-content:hover {
+  cursor: pointer;
+}
+
 /* MODAL STYLING */
 .modal-content {
   max-height: 500px;
