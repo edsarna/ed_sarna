@@ -541,10 +541,33 @@
 
 <template id="admin-page">
   <div class="vue-component">
-    <div class="container">
-      <h1 class="bold black navbar-room">{{ message }}</h1>
-    </div>
-    <div class="container"> <!-- COMMENTS -->
+    <h2 class="text-center navbar-room">Administer by Content Type:</h2>
+    <div class="space-below">
+      <nav class="navbar navbar-custom" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                  <i class="fa fa-angle-down bold"></i>
+                </button>
+              </div>
+              <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav">
+                  <li class="add-new-content"><a @click="changeShowSection('comments')">Comments</a></li>
+                  <li class="add-new-content"><a @click="changeShowSection('posts')">Blog Posts</a></li>
+                  <li class="add-new-content"><a @click="changeShowSection('readings')">Readings</a></li>
+                  <li class="add-new-content"><a @click="changeShowSection('reviews')">Reviews</a></li>
+                  <li class="add-new-content"><a @click="changeShowSection('stories')">Stories</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div> 
+    <div v-if="showSection === 'comments'" class="container"> <!-- COMMENTS -->
       <h2 class="close-review">Comments Pending Approval</h2>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
@@ -565,7 +588,7 @@
         </div>
       </div>
     </div>
-    <div class="container"> <!-- POSTS -->
+    <div class="container" v-if="showSection === 'posts'"> <!-- POSTS -->
       <h2 class="close-review">Posts</h2><a data-toggle="modal" data-target="#postModalAdd" class="add-new-content">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="post in posts">
@@ -580,7 +603,7 @@
         </div>
       </div>
     </div>
-    <div class="container"> <!-- READINGS -->
+    <div class="container" v-if="showSection === 'readings'"> <!-- READINGS -->
       <h2 class="close-review">Readings</h2><a data-toggle="modal" data-target="#readingModalAdd" class="add-new-content">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="reading in readings">
@@ -595,7 +618,7 @@
         </div>
       </div>
     </div>
-    <div class="container"> <!-- REVIEWS -->
+    <div class="container" v-if="showSection === 'reviews'"> <!-- REVIEWS -->
       <h2 class="close-review">Reviews</h2><a data-toggle="modal" data-target="#reviewModalAdd" class="add-new-content">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="review in reviews">
@@ -614,7 +637,7 @@
         </div>
       </div>
     </div>
-    <div class="container"> <!-- STORIES -->
+    <div class="container" v-if="showSection === 'stories'"> <!-- STORIES -->
       <h2 class="close-review">Stories</h2><a data-toggle="modal" data-target="#publicationModalAdd" class="add-new-content">Add New</a>
       <div class="admin-section">
         <div class="row space-below post-rows-edit" v-for="publication in publications">

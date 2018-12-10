@@ -69,8 +69,8 @@
 }
 
 div.admin-section {
-  max-height: 300px;
-  overflow: scroll;
+  /*max-height: 300px;*/
+  /*overflow: scroll;*/
   border-width: 3px;
   border-style: solid;
   border-color: gray;

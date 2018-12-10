@@ -5,6 +5,7 @@ var AdminPage = {
   data: function() {
     return {
       message: "Admin Page",
+      showSection: "comments",
       unapprovedComments: [],
       posts: [],
       readings: [],
@@ -208,6 +209,11 @@ var AdminPage = {
       axios.delete('/api/comments/' + comment.id).then(function(response) {
         this.unapprovedComments.splice(this.unapprovedComments.indexOf(comment), 1);
       }.bind(this));
+    },
+
+    changeShowSection: function(section) {
+      this.showSection = section;
+      console.log(this.showSection);
     }
   },
   computed: {}
