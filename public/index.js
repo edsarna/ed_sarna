@@ -6,19 +6,47 @@ var AdminPage = {
     return {
       message: "Admin Page",
       showSection: "comments",
+      newFeaturedImage: {imageUrl: ""},
+
       unapprovedComments: [],
       posts: [],
       readings: [],
       reviews: [],
       publications: [],
+
       selectedPost: {},
       selectedReading: {},
       selectedReview: {},
       selectedPublication: {},
-      newPost: {title: "", text: "", image_url: ""},
-      newReading: {title: "", author: "", media_type: "", url: "", text: ""},
-      newReview: {title: "", item: "", rating: 0, text: ""},
-      newPublication: {title: "", media_type: "", short_blurb: "", long_blurb: "", url: "", image_url: "", pub_date: "", full_text: ""}
+
+      newPost: {
+        title: "",
+        text: "",
+        featured_image_url: "",
+        additionalImages: []
+      },
+      newReading: {
+        title: "",
+        author: "",
+        media_type: "",
+        url: "",
+        text: ""},
+      newReview: {
+        title: "",
+        item: "",
+        rating: 0,
+        text: ""
+      },
+      newPublication: {
+        title: "",
+        media_type: "",
+        short_blurb: "",
+        long_blurb: "",
+        url: "",
+        image_url: "",
+        pub_date: "",
+        full_text: ""
+      }
     };
   },
   created: function() {
@@ -41,6 +69,7 @@ var AdminPage = {
   },
   methods: {
     selectPost: function(post) {
+      this.newFeaturedImage = {imageUrl: ""};
       this.selectedPost = post;
       // console.log(this.selectedPost);
     },
@@ -65,10 +94,19 @@ var AdminPage = {
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
         // console.log(response.data);
       });
-      if (this.selectedPost.images_exist) {
-        axios.patch('/api/images/' + this.selectedPost.images[0].id, {image_url: this.selectedPost.images[0].image_url}).then(function(response) {
+      if (this.selectedPost.featured_image) {
+        axios.patch('/api/images/' + this.selectedPost.featured_image.id, {image_url: this.selectedPost.featured_image.image_url}).then(function(response) {
           console.log('image updated too');
         });
+      } else {
+        axios.post('/api/images', {
+          image_url: this.newFeaturedImage.imageUrl,
+          post_id: this.selectedPost.id,
+          featured: true
+        }).then(function(response) {
+          console.log(response.data);
+          this.selectedPost.featured_image = response.data;
+        }.bind(this));
       }
     },
     updateReading: function() {
@@ -120,19 +158,38 @@ var AdminPage = {
         text: this.newPost.text
       };
       axios.post('/api/posts', params).then(function(response) {
-        // console.log(response.data);
         this.posts.unshift(response.data);
         this.newPost.title = "";
         this.newPost.text = "";
-        if (this.newPost.image_url !== "") {
+
+        // FEATURED IMAGE
+        if (this.newPost.featured_image_url !== "") {
           var imageParams = {
-            image_url: this.newPost.image_url,
+            image_url: this.newPost.featured_image_url,
+            featured: true,
             post_id: response.data.id
           };
           axios.post('/api/images', imageParams).then(function(response) {
-            // console.log(response.data);
-            this.newPost.image_url = "";
+            this.newPost.featured_image_url = "";
           }.bind(this));
+
+          // ADDITIONAL IMAGES
+          this.newPost.additionalImages.forEach(function(image) {
+            if (image.image_url !== "") {
+              var imageParams = {
+                image_url: image.image_url,
+                featured: false,
+                post_id: response.data.id
+              };
+              axios.post('/api/images', imageParams).then(function(response) {
+                console.log(response.data);
+                this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
+              }.bind(this));
+            } else {
+              this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
+            }
+          }.bind(this));
+
         }
       }.bind(this));
     },
@@ -224,6 +281,13 @@ var AdminPage = {
     changeShowSection: function(section) {
       this.showSection = section;
       console.log(this.showSection);
+    },
+
+    newAdditionalImage: function() {
+      this.newPost.additionalImages.push({image_url: ""});
+    },
+    removeImage: function(image) {
+      this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
     }
   },
   computed: {}

@@ -676,10 +676,20 @@
           <div class="modal-body">
             <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
             <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
-            <div v-if="selectedPost.images_exist">
-              <p>Image URL:</p>
-              <p><input type="text" v-model="selectedPost.images[0].image_url"></p>
+            <div v-if="selectedPost.featured_image">
+              <p>Featured Image URL:</p>
+              <p><input type="text" v-model="selectedPost.featured_image.image_url"></p>
             </div>
+            <div v-else>
+              <p>Featured Image URL:</p>
+              <p><input type="text" v-model="newFeaturedImage.imageUrl"></p>
+            </div>
+            <p v-for="image in newPost.additionalImages">
+              <input type="text" v-model="image.image_url" placeholder="Additional Image">
+              <button @click="removeImage(image)" type="button" class="close"aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -769,7 +779,14 @@
           <div class="modal-body">
             <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
             <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
-            <p>Image Url:</p><p><input type="text" v-model="newPost.image_url"></p>
+            <p>Featured Image Url:</p><p><input type="text" v-model="newPost.featured_image_url"></p>
+            <p v-for="image in newPost.additionalImages">
+              <input type="text" v-model="image.image_url" placeholder="Additional Image">
+              <button @click="removeImage(image)" type="button" class="close"aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </p>
+            <p><button class="btn btn-primary" @click="newAdditionalImage">Add Additional Image</button></p>
           </div>
 
           <div class="modal-footer">

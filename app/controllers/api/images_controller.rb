@@ -7,6 +7,7 @@ class Api::ImagesController < ApplicationController
   def create
     @image = Image.new(
       title: params[:title],
+      featured: params[:featured],
       image_url: params[:image_url],
       post_id: params[:post_id]
     )
