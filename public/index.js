@@ -111,23 +111,16 @@ var AdminPage = {
       }
 
       // ADDITIONAL IMAGES
-      this.selectedPost.additional_images.forEach(function(image) {
-        console.log('image: ' + image);
-        if (image.image_url === "//orange" || image.image_url === "") {
-          console.log('delete');
-          console.log(image);
+      this.selectedPost.additional_images.forEach(function(image) {    
+        if (image.image_url === "//orange" || image.image_url === "") {            
           // delete
           axios.delete('/api/images/' + image.id);
         } else if (image.id) {
-          console.log('update');
-          console.log(image);
           // update
           axios.patch('/api/images/' + image.id, {
             image_url: image.image_url
           });
         } else if (image.image_url !== "") {
-          console.log('create');
-          console.log(image);
           // create
           axios.post('/api/images', {
             featured: false,
