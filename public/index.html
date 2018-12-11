@@ -513,8 +513,8 @@
     <div style="padding:25px;">
     </div>
     <div class="container">
-      <div v-if="imagesExist">
-        <img v-bind:src="post.images[0].image_url" class="img-rounded footer-room blog-image" alt="" />
+      <div v-if="post.featured_image">
+        <img v-bind:src="post.featured_image.image_url" class="img-rounded footer-room blog-image" alt="" />
       </div>
       <div class="black">
         <h1><span class="bold">{{ post.title }}</span></h1>

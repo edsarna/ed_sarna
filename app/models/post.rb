@@ -13,4 +13,8 @@ class Post < ApplicationRecord
   def featured_image
     images.find_by(featured: true)
   end
+
+  def additional_images
+    images.where(featured: false)
+  end
 end

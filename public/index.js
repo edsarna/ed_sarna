@@ -236,7 +236,6 @@ var BlogShowPage = {
       message: "Blog Show Page",
       commentMessage: "Please note: comments must be approved before they are displayed to the public.",
       post: {},
-      imagesExist: false,
       commentsExist: false,
       commentName: "",
       commentComment: ""
@@ -245,9 +244,6 @@ var BlogShowPage = {
   created: function() {
     axios.get("/api/posts/" + this.$route.params.id).then(function(response) {
       this.post = response.data;
-      if (this.post.images[0]) {
-        this.imagesExist = true;
-      }
       if (this.post.comments[0]) {
         console.log(this.post.comments);
         console.log(this.post.comments[0]);
