@@ -385,8 +385,8 @@
   <div class="vue-component">
 
     <div class="container navbar-room footer-room">
-      <div class="row image-rows">
-        <div class="col-md-4" v-for="image in images">
+      <div class="image-rows">
+        <div class="additional-image" v-for="image in images">
           <a v-bind:href="'/#/blog/' + image.post_id"><img v-bind:src="image.image_url" class="gallery-image"></a>
         </div>
       </div>
@@ -520,7 +520,12 @@
         <h1><span class="bold">{{ post.title }}</span></h1>
         <p>{{ post.text }}</p>
       </div>
-      <hr>
+
+      <div v-for="image in post.additional_images">
+        <img class="additional-image" :src="image.image_url">
+      </div>
+
+      <hr class="clear">
       <h3 v-if="commentsExist">Comments</h3>
       <div v-for="comment in post.comments" class="bootstrap-card black card-body">
         <p class="bold">{{ comment.commenter }}</p>

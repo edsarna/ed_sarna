@@ -157,6 +157,17 @@ div.admin-section {
   overflow: hidden;
 }
 
+.additional-image {
+  max-height: 300px;
+  max-width: 300px;
+  float: left;
+  margin: 10px;
+}
+
+.clear {
+  clear: both;
+}
+
 /*.btn {
   @extend .btn-sm;
 }*/
