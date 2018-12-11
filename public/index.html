@@ -325,11 +325,12 @@
       <div class="row">
         <div class="col-md-6">
         
-          <img href="/#/stories" src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
+          <img v-if="publication.image_url" :src="publication.image_url" class="img-responsive img-rounded" alt="" />
+          <img v-else src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
         </div>    
         <div class="col-md-6">
           <p><strong>{{ publication.title }}</strong></p>
-          <p>{{ publication.long_blurb }} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie purus sed semper cursus. Morbi sagittis risus vitae varius varius. Integer vel purus tellus. Proin sed lacus nulla. Donec sit amet tellus bibendum felis sodales hendrerit in sed leo. In efficitur posuere nulla sed sollicitudin. Suspendisse vel volutpat libero. Proin convallis metus orci, id suscipit felis elementum ac. Vivamus suscipit risus nec nisi maximus rhoncus. Suspendisse in erat dignissim, pulvinar orci in, pretium nulla. Sed a erat mollis, varius sem id, rhoncus nisl. Aliquam sed ante eget urna laoreet rutrum. Ut quis congue nunc, sit amet laoreet mauris. Vestibulum sagittis nisi lacinia feugiat tincidunt. Duis in accumsan quam.</p>
+          <p>{{ publication.long_blurb }}</p>
           <blockquote v-if="awardsExist">
             <div v-for="award in publication.awards">
               {{ award.title }} - {{ award.text }}
