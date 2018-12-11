@@ -18,7 +18,7 @@ var AdminPage = {
       newPost: {title: "", text: "", image_url: ""},
       newReading: {title: "", author: "", media_type: "", url: "", text: ""},
       newReview: {title: "", item: "", rating: 0, text: ""},
-      newPublication: {title: "", media_type: "", short_blurb: "", long_blurb: "", url: "", pub_date: "", full_text: ""}
+      newPublication: {title: "", media_type: "", short_blurb: "", long_blurb: "", url: "", image_url: "", pub_date: "", full_text: ""}
     };
   },
   created: function() {
@@ -95,6 +95,10 @@ var AdminPage = {
       });
     },
     updatePublication: function() {
+      var inputImage = this.selectedPublication.image_url;
+      if (inputImage === "") {
+        inputImage = null;
+      }
       var params = {
         title: this.selectedPublication.title,
         media_type: this.selectedPublication.media_type,
@@ -102,7 +106,8 @@ var AdminPage = {
         long_blurb: this.selectedPublication.long_blurb,
         url: this.selectedPublication.url,
         pub_date: this.selectedPublication.pub_date,
-        full_text: this.selectedPublication.full_text
+        full_text: this.selectedPublication.full_text,
+        image_url: inputImage
       };
       axios.patch('/api/publications/' + this.selectedPublication.id, params).then(function(response) {
         // console.log(response.data);
@@ -159,6 +164,10 @@ var AdminPage = {
       }.bind(this));
     },
     addPublication: function() {
+      var inputImage = this.newPublication.image_url;
+      if (inputImage === "") {
+        inputImage = null;
+      }
       var params = {
         title: this.newPublication.title,
         media_type: this.newPublication.media_type,
@@ -166,7 +175,8 @@ var AdminPage = {
         long_blurb: this.newPublication.long_blurb,
         url: this.newPublication.url,
         pub_date: this.newPublication.pub_date,
-        full_text: this.newPublication.full_text
+        full_text: this.newPublication.full_text,
+        image_url: inputImage
       };
       axios.post('/api/publications', params).then(function(response) {
         // console.log(response.data);

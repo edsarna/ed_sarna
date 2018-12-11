@@ -12,7 +12,8 @@ class Api::PublicationsController < ApplicationController
       long_blurb: params[:long_blurb],
       pub_date: params[:pub_date],
       full_text: params[:full_text],
-      url: params[:url]
+      url: params[:url],
+      image_url: params[:image_url]
     )
     @publication.save
     render 'show.json.jbuilder'
@@ -37,6 +38,7 @@ class Api::PublicationsController < ApplicationController
     @publication.pub_date = params[:pub_date] || @publication.pub_date
     @publication.full_text = params[:full_text] || @publication.full_text
     @publication.url = params[:url] || @publication.url
+    @publication.image_url = params[:image_url]
     @publication.save
     render 'show.json.jbuilder'
   end
