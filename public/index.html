@@ -300,9 +300,9 @@
 <template id="publications-page">
   <div class="vue-component">
     <div class="container navbar-room">
-      <div class="row" v-for="publication in publications">
+      <div class="row publication-row" v-for="publication in publications">
         <div class="col-sm-2 col-md-offset-1">
-          <img src="img/trees_sky.jpg" class="img-responsive img-rounded small-image" alt="" />
+          <img v-if="publication.image_url" :src="publication.image_url" class="img-responsive img-rounded small-image" alt="" />
         </div>
         <div class="col-lg-8">
           <a v-bind:href="'/#/stories/' + publication.id"><span class="bold">

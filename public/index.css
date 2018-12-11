@@ -152,6 +152,11 @@ div.admin-section {
   cursor: pointer;
 }
 
+.publication-row {
+  height: 150px;
+  overflow: hidden;
+}
+
 /*.btn {
   @extend .btn-sm;
 }*/
