@@ -152,6 +152,10 @@ div.admin-section {
   cursor: pointer;
 }
 
+/*.btn {
+  @extend .btn-sm;
+}*/
+
 /* MODAL STYLING */
 .modal-content {
   max-height: 500px;
