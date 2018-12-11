@@ -684,9 +684,9 @@
               <p>Featured Image URL:</p>
               <p><input type="text" v-model="newFeaturedImage.imageUrl"></p>
             </div>
-            <p v-for="image in newPost.additionalImages">
+            <p v-for="image in selectedPost.additional_images">
               <input type="text" v-model="image.image_url" placeholder="Additional Image">
-              <button @click="removeImage(image)" type="button" class="close"aria-label="Close">
+              <button @click="editRemoveImage(image)" type="button" class="close"aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </p>

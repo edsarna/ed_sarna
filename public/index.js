@@ -288,6 +288,12 @@ var AdminPage = {
     },
     removeImage: function(image) {
       this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
+    },
+    editRemoveImage: function(image) {
+      axios.delete('/api/images/' + image.id).then(function(response) {
+        console.log(response.data);
+      });
+      this.selectedPost.additional_images.splice(this.selectedPost.additional_images.indexOf(image), 1);
     }
   },
   computed: {}
