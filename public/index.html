@@ -684,12 +684,16 @@
               <p>Featured Image URL:</p>
               <p><input type="text" v-model="newFeaturedImage.imageUrl"></p>
             </div>
+            <p>Additional Image URLs:</p>
             <p v-for="image in selectedPost.additional_images">
-              <input type="text" v-model="image.image_url" placeholder="Additional Image">
-              <button @click="editRemoveImage(image)" type="button" class="close"aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <span v-if="image.image_url !== '//orange'">
+                <input type="text" v-model="image.image_url" placeholder="Additional Image">
+                <button @click="editRemoveImage(image)" type="button" class="close"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </span>
             </p>
+            <p><button class="btn btn-primary" @click="editNewAdditionalImage">Add Additional Image</button></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

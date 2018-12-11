@@ -92,8 +92,9 @@ var AdminPage = {
         text: this.selectedPost.text
       };
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
-        // console.log(response.data);
       });
+
+      // FEATURED IMAGE
       if (this.selectedPost.featured_image) {
         axios.patch('/api/images/' + this.selectedPost.featured_image.id, {image_url: this.selectedPost.featured_image.image_url}).then(function(response) {
           console.log('image updated too');
@@ -108,6 +109,35 @@ var AdminPage = {
           this.selectedPost.featured_image = response.data;
         }.bind(this));
       }
+
+      // ADDITIONAL IMAGES
+      this.selectedPost.additional_images.forEach(function(image) {
+        console.log('image: ' + image);
+        if (image.image_url === "//orange" || image.image_url === "") {
+          console.log('delete');
+          console.log(image);
+          // delete
+          axios.delete('/api/images/' + image.id);
+        } else if (image.id) {
+          console.log('update');
+          console.log(image);
+          // update
+          axios.patch('/api/images/' + image.id, {
+            image_url: image.image_url
+          });
+        } else if (image.image_url !== "") {
+          console.log('create');
+          console.log(image);
+          // create
+          axios.post('/api/images', {
+            featured: false,
+            image_url: image.image_url,
+            post_id: this.selectedPost.id
+          }).then(function(response) {
+            image = response.data;
+          }.bind(this));
+        }
+      }.bind(this));
     },
     updateReading: function() {
       var params = {
@@ -286,14 +316,14 @@ var AdminPage = {
     newAdditionalImage: function() {
       this.newPost.additionalImages.push({image_url: ""});
     },
+    editNewAdditionalImage: function() {
+      this.selectedPost.additional_images.push({image_url: ""});
+    },
     removeImage: function(image) {
       this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
     },
     editRemoveImage: function(image) {
-      axios.delete('/api/images/' + image.id).then(function(response) {
-        console.log(response.data);
-      });
-      this.selectedPost.additional_images.splice(this.selectedPost.additional_images.indexOf(image), 1);
+      image.image_url = "//orange";
     }
   },
   computed: {}
