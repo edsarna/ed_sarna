@@ -459,6 +459,7 @@ var HomePage = {
       message: "Welcome Ed Sarna's Website!",
       post: {},
       postImage: null,
+      storyImage: null,
       story: {},
       recentImages: [{image_url: ""},{image_url: ""},{image_url: ""}]
     };
@@ -475,6 +476,9 @@ var HomePage = {
     }.bind(this));
     axios.get('/api/publications/last').then(function(response) {
       this.story = response.data;
+      if (this.story.image_url && this.story.image_url !== "") {
+        this.storyImage = this.story.image_url;
+      }
     }.bind(this));
   },
   methods: {},

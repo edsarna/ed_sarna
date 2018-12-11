@@ -137,7 +137,8 @@
         <div class="row">
           <div class="col-md-6">
 
-            <img src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
+            <img v-if="storyImage" :src="storyImage" class="img-responsive img-rounded post-image-home" />
+            <img v-else src="img/trees_sky.jpg" class="img-responsive img-rounded" alt="" />
           </div>    
           <div class="col-md-6">
             <p>Read Ed Sarna's New Story...</p>
