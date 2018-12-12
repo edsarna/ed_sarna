@@ -457,6 +457,7 @@ var ImagesPage = {
 
 var ReadingsPage = {
   template: "#readings-page",
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Readings Page!",
@@ -477,6 +478,7 @@ var ReadingsPage = {
 
 var ReviewsPage = {
   template: "#reviews-page",
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Reviews Page!",
@@ -487,7 +489,6 @@ var ReviewsPage = {
     axios.get('/api/reviews').then(function(response) {
       this.reviews = response.data.reverse();
       for (var i = 0;i < this.reviews.length; i++) {
-        console.log(this.reviews[i].rating);
         var ratingArray = [];
         for (var n = 1; n <= this.reviews[i].rating; n++) {
           ratingArray.push(n);
@@ -523,6 +524,7 @@ var PublicationShowPage = {
 
 var PublicationsPage = {
   template: "#publications-page",
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Stories Page!",

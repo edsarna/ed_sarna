@@ -298,7 +298,7 @@
 <template id="publications-page">
   <div class="vue-component">
     <div class="container navbar-room">
-      <div class="row publication-row" v-for="publication in publications">
+      <div class="row publication-row" v-for="publication in orderBy(publications, 'created_at', -1)">
         <div class="col-sm-2 col-md-offset-1">
           <img v-if="publication.image_url" :src="publication.image_url" class="img-responsive img-rounded small-image" alt="" />
         </div>
@@ -347,7 +347,7 @@
   <div class="vue-component">
 
     <div class="container navbar-room">
-      <div class="row space-below reading-rows" v-for="review in reviews">
+      <div class="row space-below reading-rows" v-for="review in orderBy(reviews, 'created_at', -1)">
         <div class="col-sm-3">
           <span class="bold">{{ review.title }}</span>
           <p>A Review of: {{ review.item }}</p>
@@ -365,7 +365,7 @@
 <template id="readings-page">
   <div class="vue-component">
     <div class="container navbar-room">
-      <div v-for="reading in readings" class=" reading-rows">
+      <div v-for="reading in orderBy(readings, 'created_at', -1)" class=" reading-rows">
         <span class="bold">{{ reading.media_type }}: <a v-bind:href="reading.url">{{ reading.title }}</a></span>
         <p class="black">{{ reading.text }}</p>
       </div>
