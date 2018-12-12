@@ -53,14 +53,14 @@
 
 .card-body {
   padding: 20px;
+  max-height: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-rows {
   margin-left: 8%;
   margin-right: 8%;
-  max-height: 500px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .reading-rows {
@@ -144,8 +144,8 @@ div.admin-section {
 }
 
 .subscription-section {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .add-new-content:hover {
