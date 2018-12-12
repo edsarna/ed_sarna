@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
     <script src="index.js" defer></script>
 
     <!-- CSS -->
@@ -273,13 +274,10 @@
 <template id="blog-page">
   <div class="vue-component">
     <div class="container navbar-room">
-      <div class="row space-below post-rows" v-for="post in posts">
+      <div class="row space-below post-rows" v-for="post in orderBy(posts, 'created_at', -1)">
+      <!-- <div class="row space-below post-rows" v-for="post in posts"> -->
         <div class="bootstrap-card">
-          <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
           <div class="card-body">
-           <!--  <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a> -->
             <a v-bind:href="'/#/blog/' + post.id">
               <div class="col-sm-4" v-if="post.featured_image">
                 <img :src="post.featured_image.image_url" class="image-border gallery-image">

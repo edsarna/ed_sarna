@@ -1,4 +1,4 @@
-/* global Vue, VueRouter, axios */
+/* global Vue, Vue2Filters, VueRouter, axios */
 
 var AdminPage = {
   template: "#admin-page",
@@ -540,10 +540,11 @@ var PublicationsPage = {
 
 var BlogPage = {
   template: "#blog-page",
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Blog Page!",
-      posts: []
+      posts: [{created_at: 1}]
     };
   },
   created: function() {
