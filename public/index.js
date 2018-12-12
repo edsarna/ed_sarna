@@ -30,7 +30,8 @@ var AdminPage = {
         author: "",
         media_type: "",
         url: "",
-        text: ""},
+        text: ""
+      },
       newReview: {
         title: "",
         item: "",
@@ -307,15 +308,19 @@ var AdminPage = {
     },
 
     newAdditionalImage: function() {
+      // Creates a textbox
       this.newPost.additionalImages.push({image_url: ""});
     },
     editNewAdditionalImage: function() {
+      // Creates a new textbox
       this.selectedPost.additional_images.push({image_url: ""});
     },
     removeImage: function(image) {
+      // removes textbox and and removes data from array
       this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
     },
     editRemoveImage: function(image) {
+      // removes textbox and tags data for removal, but data isn't deleted until user clicks save
       image.image_url = "//orange";
     }
   },
