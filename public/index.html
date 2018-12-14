@@ -549,7 +549,7 @@
 <template id="admin-page">
   <div class="vue-component">
     <!-- SIGNUP -->
-    <div class="container">
+    <div v-if="!loggedIn" class="container">
       <h1>Login</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
