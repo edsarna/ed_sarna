@@ -1,4 +1,6 @@
 class Api::ReadingsController < ApplicationController
+  before_action :authenticate_user, :only => [:create, :update, :destroy]
+  
   def index
     @readings = Reading.all
     render 'index.json.jbuilder'

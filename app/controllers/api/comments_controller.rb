@@ -1,4 +1,6 @@
 class Api::CommentsController < ApplicationController
+  before_action :authenticate_user, :only => [:update, :destroy]
+
   def index
     @comments = Comment.where(approved: false)
     render 'index.json.jbuilder'
