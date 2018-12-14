@@ -548,387 +548,405 @@
 
 <template id="admin-page">
   <div class="vue-component">
-    <h2 class="text-center navbar-room">Administer by Content Type:</h2>
-    <div class="space-below">
-      <!-- NAVBAR 2.0 -->
-      <nav class="navbar navbar-custom" role="navigation">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                  <i class="fa fa-angle-down bold"></i>
+    <!-- SIGNUP -->
+    <div class="container">
+      <h1>Login</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control" v-model="email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" v-model="password">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+    <div v-if="loggedIn">
+      <h2 class="text-center navbar-room">Administer by Content Type:</h2>
+      <div class="space-below">
+        <!-- NAVBAR 2.0 -->
+        <nav class="navbar navbar-custom" role="navigation">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                    <i class="fa fa-angle-down bold"></i>
+                  </button>
+                </div>
+                <div class="collapse navbar-collapse" id="menu">
+                  <ul class="nav">
+                    <li class="add-new-content"><a @click="changeShowSection('comments')">Comments</a></li>
+                    <li class="add-new-content"><a @click="changeShowSection('posts')">Blog Posts</a></li>
+                    <li class="add-new-content"><a @click="changeShowSection('readings')">Readings</a></li>
+                    <li class="add-new-content"><a @click="changeShowSection('reviews')">Reviews</a></li>
+                    <li class="add-new-content"><a @click="changeShowSection('stories')">Stories</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div> 
+      <div v-if="showSection === 'comments'" class="container"> <!-- COMMENTS -->
+        <h2 class="close-review">Comments Pending Approval</h2>
+        <div class="admin-section">
+          <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
+            <div class="col black">
+              <span class="bold">Posted by: {{ comment.commenter }}</span>
+              <span class="bold">(In reference to: {{ comment.post.title }})</span>
+              <p class="post-rows-edit-text">{{ comment.comment }}</p>
+              <!-- Post Modal Edit Button -->
+              <p>
+                <button @click="approveComment(comment)" type="button" class="btn btn-success">
+                  Approve This Comment
                 </button>
-              </div>
-              <div class="collapse navbar-collapse" id="menu">
-                <ul class="nav">
-                  <li class="add-new-content"><a @click="changeShowSection('comments')">Comments</a></li>
-                  <li class="add-new-content"><a @click="changeShowSection('posts')">Blog Posts</a></li>
-                  <li class="add-new-content"><a @click="changeShowSection('readings')">Readings</a></li>
-                  <li class="add-new-content"><a @click="changeShowSection('reviews')">Reviews</a></li>
-                  <li class="add-new-content"><a @click="changeShowSection('stories')">Stories</a></li>
-                </ul>
-              </div>
+                <button @click="deleteComment(comment)" type="button" class="btn btn-danger">
+                  Delete This Comment
+                </button>
+              </p>
             </div>
           </div>
         </div>
-      </nav>
-    </div> 
-    <div v-if="showSection === 'comments'" class="container"> <!-- COMMENTS -->
-      <h2 class="close-review">Comments Pending Approval</h2>
-      <div class="admin-section">
-        <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
-          <div class="col black">
-            <span class="bold">Posted by: {{ comment.commenter }}</span>
-            <span class="bold">(In reference to: {{ comment.post.title }})</span>
-            <p class="post-rows-edit-text">{{ comment.comment }}</p>
-            <!-- Post Modal Edit Button -->
-            <p>
-              <button @click="approveComment(comment)" type="button" class="btn btn-success">
-                Approve This Comment
-              </button>
-              <button @click="deleteComment(comment)" type="button" class="btn btn-danger">
-                Delete This Comment
-              </button>
-            </p>
+      </div>
+      <div class="container" v-if="showSection === 'posts'"> <!-- POSTS -->
+        <h2 class="close-review">Posts</h2><a data-toggle="modal" data-target="#postModalAdd" class="add-new-content">Add New</a>
+        <div class="admin-section">
+          <div class="row space-below post-rows-edit" v-for="post in posts">
+            <div class="col black">
+              <span class="bold">{{ post.title }}</span>
+              <p class="post-rows-edit-text">{{ post.text }}</p>
+              <!-- Post Modal Edit Button -->
+              <p><button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+                Edit This Post
+              </button></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container" v-if="showSection === 'posts'"> <!-- POSTS -->
-      <h2 class="close-review">Posts</h2><a data-toggle="modal" data-target="#postModalAdd" class="add-new-content">Add New</a>
-      <div class="admin-section">
-        <div class="row space-below post-rows-edit" v-for="post in posts">
-          <div class="col black">
-            <span class="bold">{{ post.title }}</span>
-            <p class="post-rows-edit-text">{{ post.text }}</p>
-            <!-- Post Modal Edit Button -->
-            <p><button @click="selectPost(post)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
-              Edit This Post
-            </button></p>
+      <div class="container" v-if="showSection === 'readings'"> <!-- READINGS -->
+        <h2 class="close-review">Readings</h2><a data-toggle="modal" data-target="#readingModalAdd" class="add-new-content">Add New</a>
+        <div class="admin-section">
+          <div class="row space-below post-rows-edit" v-for="reading in readings">
+            <div class="col black">
+              <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
+              <p>{{ reading.text }}</p>
+              <!-- Reading Modal Edit Button -->
+              <p><button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
+                Edit This Reading
+              </button></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container" v-if="showSection === 'readings'"> <!-- READINGS -->
-      <h2 class="close-review">Readings</h2><a data-toggle="modal" data-target="#readingModalAdd" class="add-new-content">Add New</a>
-      <div class="admin-section">
-        <div class="row space-below post-rows-edit" v-for="reading in readings">
-          <div class="col black">
-            <span class="bold">{{ reading.title }} by {{ reading.author }}</span>
-            <p>{{ reading.text }}</p>
-            <!-- Reading Modal Edit Button -->
-            <p><button @click="selectReading(reading)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#readingModal">
-              Edit This Reading
-            </button></p>
+      <div class="container" v-if="showSection === 'reviews'"> <!-- REVIEWS -->
+        <h2 class="close-review">Reviews</h2><a data-toggle="modal" data-target="#reviewModalAdd" class="add-new-content">Add New</a>
+        <div class="admin-section">
+          <div class="row space-below post-rows-edit" v-for="review in reviews">
+            <div class="col black">
+              <span class="bold">
+                <p class="close-review">{{ review.title }}</p>
+                <p class="close-review">A review of: {{ review.item }}</p>
+                <p class="close-review">Rating: {{ review.rating }}</p>
+              </span>
+              <p>{{ review.text }}</p>
+              <!-- Reivew Modal Edit Button -->
+              <p><button @click="selectReview(review)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+                Edit This Review
+              </button></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container" v-if="showSection === 'reviews'"> <!-- REVIEWS -->
-      <h2 class="close-review">Reviews</h2><a data-toggle="modal" data-target="#reviewModalAdd" class="add-new-content">Add New</a>
-      <div class="admin-section">
-        <div class="row space-below post-rows-edit" v-for="review in reviews">
-          <div class="col black">
-            <span class="bold">
-              <p class="close-review">{{ review.title }}</p>
-              <p class="close-review">A review of: {{ review.item }}</p>
-              <p class="close-review">Rating: {{ review.rating }}</p>
-            </span>
-            <p>{{ review.text }}</p>
-            <!-- Reivew Modal Edit Button -->
-            <p><button @click="selectReview(review)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-              Edit This Review
-            </button></p>
+      <div class="container" v-if="showSection === 'stories'"> <!-- STORIES -->
+        <h2 class="close-review">Stories</h2><a data-toggle="modal" data-target="#publicationModalAdd" class="add-new-content">Add New</a>
+        <div class="admin-section">
+          <div class="row space-below post-rows-edit" v-for="publication in publications">
+            <div class="col black">
+              <span class="bold">{{ publication.title }} ({{ publication.media_type }})</span>
+              <p><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
+              <p><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
+              <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
+              <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
+              <p><span class="bold">URL: </span>{{ publication.url }}</p>
+              <!-- Publication Modal Edit Button -->
+              <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
+                Edit This Story
+              </button></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container" v-if="showSection === 'stories'"> <!-- STORIES -->
-      <h2 class="close-review">Stories</h2><a data-toggle="modal" data-target="#publicationModalAdd" class="add-new-content">Add New</a>
-      <div class="admin-section">
-        <div class="row space-below post-rows-edit" v-for="publication in publications">
-          <div class="col black">
-            <span class="bold">{{ publication.title }} ({{ publication.media_type }})</span>
-            <p><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
-            <p><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
-            <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
-            <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
-            <p><span class="bold">URL: </span>{{ publication.url }}</p>
-            <!-- Publication Modal Edit Button -->
-            <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
-              Edit This Story
-            </button></p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Post Edit Modal -->
-    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit a Post</h5>
+      <!-- Post Edit Modal -->
+      <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit a Post</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
+              <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
+              <div v-if="selectedPost.featured_image">
+                <p>Featured Image URL:</p>
+                <p><input type="text" v-model="selectedPost.featured_image.image_url"></p>
+              </div>
+              <div v-else>
+                <p>Featured Image URL:</p>
+                <p><input type="text" v-model="newFeaturedImage.imageUrl"></p>
+              </div>
+              <p>Additional Image URLs:</p>
+              <p v-for="image in selectedPost.additional_images">
+                <span v-if="image.image_url !== '//orange'">
+                  <input type="text" v-model="image.image_url" placeholder="Additional Image">
+                  <button @click="editRemoveImage(image)" type="button" class="close"aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </span>
+              </p>
+              <p><button class="btn btn-primary" @click="editNewAdditionalImage">Add Additional Image</button></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="updatePost" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#readingModalDelete" data-dismiss="modal">Delete Post</button>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
-            <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
-            <div v-if="selectedPost.featured_image">
-              <p>Featured Image URL:</p>
-              <p><input type="text" v-model="selectedPost.featured_image.image_url"></p>
+        </div>
+      </div>
+      <!-- Reading Edit Modal -->
+      <div class="modal fade" id="readingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit a Reading</h5>
             </div>
-            <div v-else>
-              <p>Featured Image URL:</p>
-              <p><input type="text" v-model="newFeaturedImage.imageUrl"></p>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="selectedReading.title"></p>
+              <p>Author:</p><p><input type="text" v-model="selectedReading.author"></p>
+              <p>Media Type:</p><p><input type="text" v-model="selectedReading.media_type"></p>
+              <p>URL:</p><p><input type="text" v-model="selectedReading.url"></p>
+              <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedReading.text"></textarea></p>
             </div>
-            <p>Additional Image URLs:</p>
-            <p v-for="image in selectedPost.additional_images">
-              <span v-if="image.image_url !== '//orange'">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="updateReading" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#readingModalDelete" data-dismiss="modal">Delete Reading</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Review Edit Modal -->
+      <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit a Review</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="selectedReview.title"></p>
+              <p>Item:</p><p><input type="text" v-model="selectedReview.item"></p>
+              <p>Rating:</p><p><input type="text" v-model="selectedReview.rating"></p>
+              <p>Review:</p><p><textarea rows="8" cols="65" v-model="selectedReview.text"></textarea></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="updateReview" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reviewModalDelete" data-dismiss="modal">Delete Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Publication Edit Modal -->
+      <div class="modal fade" id="publicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit a Story</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="selectedPublication.title"></p>
+              <p>Media Type:</p><p><input type="text" v-model="selectedPublication.media_type"></p>
+              <p>URL:</p><p><input type="text" v-model="selectedPublication.url"></p>
+              <p>Image:</p><p><input type="text" v-model="selectedPublication.image_url"></p>
+              <p>Publication Date:</p><p><input type="date" v-model="selectedPublication.pub_date"></p>
+              <p>Short Blurb:</p><p><textarea rows="4" cols="65" v-model="selectedPublication.short_blurb"></textarea></p>
+              <p>Long Blurb:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.long_blurb"></textarea></p>
+              <p>Full Text:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.full_text"></textarea></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="updatePublication" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#publicationModalDelete" data-dismiss="modal">Delete Story</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post Add Modal -->
+      <div class="modal fade" id="postModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a Post</h5>
+            </div>
+
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
+              <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
+              <p>Featured Image Url:</p><p><input type="text" v-model="newPost.featured_image_url"></p>
+              <p v-for="image in newPost.additionalImages">
                 <input type="text" v-model="image.image_url" placeholder="Additional Image">
-                <button @click="editRemoveImage(image)" type="button" class="close"aria-label="Close">
+                <button @click="removeImage(image)" type="button" class="close"aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
-              </span>
-            </p>
-            <p><button class="btn btn-primary" @click="editNewAdditionalImage">Add Additional Image</button></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="updatePost" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#readingModalDelete" data-dismiss="modal">Delete Post</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Reading Edit Modal -->
-    <div class="modal fade" id="readingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit a Reading</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="selectedReading.title"></p>
-            <p>Author:</p><p><input type="text" v-model="selectedReading.author"></p>
-            <p>Media Type:</p><p><input type="text" v-model="selectedReading.media_type"></p>
-            <p>URL:</p><p><input type="text" v-model="selectedReading.url"></p>
-            <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedReading.text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="updateReading" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#readingModalDelete" data-dismiss="modal">Delete Reading</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review Edit Modal -->
-    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit a Review</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="selectedReview.title"></p>
-            <p>Item:</p><p><input type="text" v-model="selectedReview.item"></p>
-            <p>Rating:</p><p><input type="text" v-model="selectedReview.rating"></p>
-            <p>Review:</p><p><textarea rows="8" cols="65" v-model="selectedReview.text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="updateReview" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reviewModalDelete" data-dismiss="modal">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Publication Edit Modal -->
-    <div class="modal fade" id="publicationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit a Story</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="selectedPublication.title"></p>
-            <p>Media Type:</p><p><input type="text" v-model="selectedPublication.media_type"></p>
-            <p>URL:</p><p><input type="text" v-model="selectedPublication.url"></p>
-            <p>Image:</p><p><input type="text" v-model="selectedPublication.image_url"></p>
-            <p>Publication Date:</p><p><input type="date" v-model="selectedPublication.pub_date"></p>
-            <p>Short Blurb:</p><p><textarea rows="4" cols="65" v-model="selectedPublication.short_blurb"></textarea></p>
-            <p>Long Blurb:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.long_blurb"></textarea></p>
-            <p>Full Text:</p><p><textarea rows="8" cols="65" v-model="selectedPublication.full_text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="updatePublication" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#publicationModalDelete" data-dismiss="modal">Delete Story</button>
-          </div>
-        </div>
-      </div>
-    </div>
+              </p>
+              <p><button class="btn btn-primary" @click="newAdditionalImage">Add Additional Image</button></p>
+            </div>
 
-    <!-- Post Add Modal -->
-    <div class="modal fade" id="postModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create a Post</h5>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="addPost" type="button" class="btn btn-primary" data-dismiss="modal">Save Post</button>
+            </div>
           </div>
+        </div>
+      </div>
+      <!-- Reading Add Modal -->
+      <div class="modal fade" id="readingModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a Reading</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="newReading.title"></p>
+              <p>Author:</p><p><input type="text" v-model="newReading.author"></p>
+              <p>Media Type:</p><p><input type="text" v-model="newReading.media_type"></p>
+              <p>URL:</p><p><input type="text" v-model="newReading.url"></p>
+              <p>Body:</p><p><textarea rows="8" cols="65" v-model="newReading.text"></textarea></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="addReading" type="button" class="btn btn-primary" data-dismiss="modal">Save Reading</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Review Add Modal -->
+      <div class="modal fade" id="reviewModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a Review</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="newReview.title"></p>
+              <p>Item:</p><p><input type="text" v-model="newReview.item"></p>
+              <p>Rating:</p><p><input type="text" v-model="newReview.rating"></p>
+              <p>Review:</p><p><textarea rows="8" cols="65" v-model="newReview.text"></textarea></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="addReview" type="button" class="btn btn-primary" data-dismiss="modal">Save Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Publication Add Modal -->
+      <div class="modal fade" id="publicationModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a Story</h5>
+            </div>
+            <div class="modal-body">
+              <p>Title:</p><p><input type="text" v-model="newPublication.title"></p>
+              <p>Media Type:</p><p><input type="text" v-model="newPublication.media_type"></p>
+              <p>URL:</p><p><input type="text" v-model="newPublication.url"></p>
+              <p>Image:</p><p><input type="text" v-model="newPublication.image_url"></p>
+              <p>Publication Date:</p><p><input type="date" v-model="newPublication.pub_date"></p>
+              <p>Short Blurb:</p><p><textarea rows="4" cols="65" v-model="newPublication.short_blurb"></textarea></p>
+              <p>Long Blurb:</p><p><textarea rows="8" cols="65" v-model="newPublication.long_blurb"></textarea></p>
+              <p>Full Text:</p><p><textarea rows="8" cols="65" v-model="newPublication.full_text"></textarea></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button @click="addPublication" type="button" class="btn btn-primary" data-dismiss="modal">Save Story</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
-            <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
-            <p>Featured Image Url:</p><p><input type="text" v-model="newPost.featured_image_url"></p>
-            <p v-for="image in newPost.additionalImages">
-              <input type="text" v-model="image.image_url" placeholder="Additional Image">
-              <button @click="removeImage(image)" type="button" class="close"aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </p>
-            <p><button class="btn btn-primary" @click="newAdditionalImage">Add Additional Image</button></p>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="addPost" type="button" class="btn btn-primary" data-dismiss="modal">Save Post</button>
+      <!-- Post Delete Modal -->
+      <div class="modal fade" id="readingModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this blog post?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#postModal" data-dismiss="modal">Cancel</button>
+              <button @click="deletePost" type="button" class="btn btn-danger" data-dismiss="modal">Delete Post</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Reading Add Modal -->
-    <div class="modal fade" id="readingModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create a Reading</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="newReading.title"></p>
-            <p>Author:</p><p><input type="text" v-model="newReading.author"></p>
-            <p>Media Type:</p><p><input type="text" v-model="newReading.media_type"></p>
-            <p>URL:</p><p><input type="text" v-model="newReading.url"></p>
-            <p>Body:</p><p><textarea rows="8" cols="65" v-model="newReading.text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="addReading" type="button" class="btn btn-primary" data-dismiss="modal">Save Reading</button>
+      <!-- Reading Delete Modal -->
+      <div class="modal fade" id="readingModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this reading?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#readingModal" data-dismiss="modal">Cancel</button>
+              <button @click="deleteReading" type="button" class="btn btn-danger" data-dismiss="modal">Delete Reading</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Review Add Modal -->
-    <div class="modal fade" id="reviewModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create a Review</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="newReview.title"></p>
-            <p>Item:</p><p><input type="text" v-model="newReview.item"></p>
-            <p>Rating:</p><p><input type="text" v-model="newReview.rating"></p>
-            <p>Review:</p><p><textarea rows="8" cols="65" v-model="newReview.text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="addReview" type="button" class="btn btn-primary" data-dismiss="modal">Save Review</button>
+      <!-- Review Delete Modal -->
+      <div class="modal fade" id="reviewModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this review?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reviewModal" data-dismiss="modal">Cancel</button>
+              <button @click="deleteReview" type="button" class="btn btn-danger" data-dismiss="modal">Delete Review</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Publication Add Modal -->
-    <div class="modal fade" id="publicationModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create a Story</h5>
-          </div>
-          <div class="modal-body">
-            <p>Title:</p><p><input type="text" v-model="newPublication.title"></p>
-            <p>Media Type:</p><p><input type="text" v-model="newPublication.media_type"></p>
-            <p>URL:</p><p><input type="text" v-model="newPublication.url"></p>
-            <p>Image:</p><p><input type="text" v-model="newPublication.image_url"></p>
-            <p>Publication Date:</p><p><input type="date" v-model="newPublication.pub_date"></p>
-            <p>Short Blurb:</p><p><textarea rows="4" cols="65" v-model="newPublication.short_blurb"></textarea></p>
-            <p>Long Blurb:</p><p><textarea rows="8" cols="65" v-model="newPublication.long_blurb"></textarea></p>
-            <p>Full Text:</p><p><textarea rows="8" cols="65" v-model="newPublication.full_text"></textarea></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button @click="addPublication" type="button" class="btn btn-primary" data-dismiss="modal">Save Story</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Post Delete Modal -->
-    <div class="modal fade" id="readingModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this blog post?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#postModal" data-dismiss="modal">Cancel</button>
-            <button @click="deletePost" type="button" class="btn btn-danger" data-dismiss="modal">Delete Post</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Reading Delete Modal -->
-    <div class="modal fade" id="readingModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this reading?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#readingModal" data-dismiss="modal">Cancel</button>
-            <button @click="deleteReading" type="button" class="btn btn-danger" data-dismiss="modal">Delete Reading</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review Delete Modal -->
-    <div class="modal fade" id="reviewModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this review?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reviewModal" data-dismiss="modal">Cancel</button>
-            <button @click="deleteReview" type="button" class="btn btn-danger" data-dismiss="modal">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Publication Delete Modal -->
-    <div class="modal fade" id="publicationModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to delete this story?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#publicationModal" data-dismiss="modal">Cancel</button>
-            <button @click="deletePublication" type="button" class="btn btn-danger" data-dismiss="modal">Delete Story</button>
+      <!-- Publication Delete Modal -->
+      <div class="modal fade" id="publicationModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Confirm</h5>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this story?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#publicationModal" data-dismiss="modal">Cancel</button>
+              <button @click="deletePublication" type="button" class="btn btn-danger" data-dismiss="modal">Delete Story</button>
+            </div>
           </div>
         </div>
       </div>

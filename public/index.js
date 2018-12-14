@@ -4,6 +4,13 @@ var AdminPage = {
   template: "#admin-page",
   data: function() {
     return {
+      // SIGN IN
+      email: "",
+      password: "",
+      errors: [],
+      loggedIn: false,
+
+      // ADMIN STUFF
       message: "Admin Page",
       showSection: "comments",
       newFeaturedImage: {imageUrl: ""},
@@ -322,6 +329,29 @@ var AdminPage = {
     editRemoveImage: function(image) {
       // removes textbox and tags data for removal, but data isn't deleted until user clicks save
       image.image_url = "//orange";
+    },
+
+    // SIGN IN
+    submit: function() {
+      var params = {
+        email: this.email, password: this.password
+      };
+      axios
+        .post("/api/sessions", params)
+        .then(function(response) {
+          axios.defaults.headers.common["Authorization"] =
+            "Bearer " + response.data.jwt;
+          localStorage.setItem("jwt", response.data.jwt);
+          console.log("Logged In");
+          this.loggedIn = true;
+        }.bind(this))
+        .catch(
+          function(error) {
+            this.errors = ["Invalid email or password."];
+            this.email = "";
+            this.password = "";
+          }.bind(this)
+        );
     }
   },
   computed: {}
@@ -613,5 +643,11 @@ var router = new VueRouter({
 
 var app = new Vue({
   el: "#vue-app",
-  router: router
+  router: router,
+  created: function() {
+    var jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      axios.defaults.headers.common["Authorization"] = jwt;
+    }
+  }
 });

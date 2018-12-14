@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     delete '/awards/:id' => 'awards#destroy'
 
     post '/users' => 'users#create'
+    post "/sessions" => "sessions#create"
 
     post '/questions' => 'questions#create'
 
