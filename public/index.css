@@ -1,6 +1,12 @@
-.small-image {
-  width: 160px;
+.small-image, .blank-image {
+  width: 14%;
   margin: 5px;
+  float: left;
+  margin-left: 15%;
+}
+
+.margin-right {
+  margin-right: 15%;
 }
 
 .navbar-room {
@@ -160,6 +166,7 @@ div.admin-section {
 .publication-row {
   height: 150px;
   overflow: hidden;
+  margin-top: 30px;
 }
 
 .additional-image {
