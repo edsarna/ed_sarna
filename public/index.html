@@ -337,7 +337,7 @@
               {{ award.title }} - {{ award.text }}
             </div>
           </blockquote>
-          <a href="/#/stories" class="btn btn-skin btn-scroll">Read Full Story</a>
+          <a v-if="publication.url" :href="url" class="btn btn-skin btn-scroll">Read Full Story</a>
         </div>
       </div>    
     </div>

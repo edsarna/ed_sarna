@@ -537,7 +537,8 @@ var PublicationShowPage = {
     return {
       message: "Publication Show Page",
       publication: {},
-      awardsExist: false
+      awardsExist: false,
+      url: ""
     };
   },
   created: function() {
@@ -545,6 +546,13 @@ var PublicationShowPage = {
       this.publication = response.data;
       if (this.publication.awards.length > 0) {
         this.awardsExist = true;
+      }
+      if (this.publication.url) {
+        if (!this.publication.url.includes("http")) {
+          this.url = "http://" + this.publication.url;
+        } else {
+          this.url = this.publication.url;
+        }
       }
     }.bind(this));
   },
