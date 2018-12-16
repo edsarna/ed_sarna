@@ -11,6 +11,7 @@ class UserNotifierMailer < ApplicationMailer
 
     def send_notification_email(user)
       @user = user
+      @post = Post.last
       mail( :to => @user.email,
         :subject => 'New Post from Ed Sarna' )
     end
