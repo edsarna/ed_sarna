@@ -55,3 +55,4 @@ gem "rack", ">= 2.0.6"
 gem 'pony', '~> 1.12'
 gem 'sendgrid-ruby'
 gem 'figaro'
+gem 'simple_format'

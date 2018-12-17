@@ -372,6 +372,8 @@ var BlogShowPage = {
   created: function() {
     axios.get("/api/posts/" + this.$route.params.id).then(function(response) {
       this.post = response.data;
+      console.log(this.post.text.split("\n"));
+      this.post.text = this.post.text.split("\n");
       if (this.post.comments[0]) {
         console.log(this.post.comments);
         console.log(this.post.comments[0]);

@@ -9,8 +9,9 @@ class Api::PostsController < ApplicationController
   def create
     @post = Post.new(
       title: params[:title],
-      text: params[:text]  
+      text: params[:text]
     )
+    p @post[:text]
     if @post.save
       users = User.all
       users.each do |user|
@@ -27,6 +28,7 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    p @post.text
     render 'show.json.jbuilder'
   end
 

@@ -521,7 +521,7 @@
       </div>
       <div class="black">
         <h1><span class="bold">{{ post.title }}</span></h1>
-        <p>{{ post.text }}</p>
+        <p v-for="paragraph in post.text">{{ paragraph }}</p>
       </div>
 
       <div v-for="image in post.additional_images">
