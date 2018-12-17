@@ -11,4 +11,16 @@ class Api::UsersController < ApplicationController
     end
     render json: {message: "Maybe it worked?"}
   end
+
+  def update
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:old_password])
+      @user.password = params[:new_password]
+      if @user.save
+        render json: {message: "password updated"}
+      else
+        render json: {}, status: :unprocessable_entity
+      end
+    end
+  end
 end

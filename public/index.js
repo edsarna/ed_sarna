@@ -9,6 +9,11 @@ var AdminPage = {
       password: "",
       errors: [],
       loggedIn: false,
+      newPassword: {
+        email: "",
+        oldPassword: "",
+        newPasswrod: ""
+      },
 
       // ADMIN STUFF
       message: "Admin Page",
@@ -353,6 +358,15 @@ var AdminPage = {
             this.password = "";
           }.bind(this)
         );
+    },
+    changePassword: function() {
+      axios.patch('/api/users', {
+        email: this.newPassword.email,
+        old_password: this.newPassword.oldPassword,
+        new_password: this.newPassword.newPassword
+      }).then(function(response) {
+        console.log(response.data);
+      });
     }
   },
   computed: {}
