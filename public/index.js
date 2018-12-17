@@ -339,6 +339,7 @@ var AdminPage = {
       axios
         .post("/api/sessions", params)
         .then(function(response) {
+          console.log(response.data);
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);

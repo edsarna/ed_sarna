@@ -12,7 +12,7 @@ class Api::SessionsController < ApplicationController
       )
       render json: {jwt: jwt, email: user.email}, status: :created
     else
-      render json: {}
+      render json: {}, status: :unprocessable_entity
     end
   end
 end

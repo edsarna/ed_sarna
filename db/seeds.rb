@@ -76,3 +76,11 @@
 #   publication_id: Publication.find_by(title: "Dwayne Danger, Private Eye").id,
 #   date_received: DateTime.new(2015,1,1,0,0,0)
 # )
+
+
+User.create(
+  email: "ed@edsarna.com",
+  password: "password",
+  password_confirmation: "password",
+  name: "Ed"
+)
