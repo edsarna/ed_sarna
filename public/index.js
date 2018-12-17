@@ -501,6 +501,7 @@ var ReadingsPage = {
       this.readings = response.data.reverse();
       for (var i = 0; i < this.readings.length; i++) {
         this.readings[i].media_type = this.readings[i].media_type.charAt(0).toUpperCase() + this.readings[i].media_type.slice(1);
+        this.readings[i].text = this.readings[i].text.split("\n");
       }
     }.bind(this));
   },

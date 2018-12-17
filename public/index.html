@@ -370,7 +370,7 @@
     <div class="container navbar-room">
       <div v-for="reading in orderBy(readings, 'created_at', -1)" class=" reading-rows">
         <span class="bold">{{ reading.media_type }}: <a v-bind:href="reading.url">{{ reading.title }}</a></span>
-        <p class="black">{{ reading.text }}</p>
+        <p class="black" v-for="paragraph in reading.text">{{ paragraph }}</p>
       </div>
     </div>
     <!-- <div v-for="reading in readings">
