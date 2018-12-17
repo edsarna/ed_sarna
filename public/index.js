@@ -72,7 +72,7 @@ var AdminPage = {
     }.bind(this));
     axios.get('/api/comments').then(function(response) {
       this.unapprovedComments = response.data.reverse();
-      console.log(this.unapprovedComments);
+      // console.log(this.unapprovedComments);
     }.bind(this));
   },
   methods: {
@@ -105,7 +105,7 @@ var AdminPage = {
       // FEATURED IMAGE
       if (this.selectedPost.featured_image) {
         axios.patch('/api/images/' + this.selectedPost.featured_image.id, {image_url: this.selectedPost.featured_image.image_url}).then(function(response) {
-          console.log('image updated too');
+          // console.log('image updated too');
         });
       } else {
         axios.post('/api/images', {
@@ -113,7 +113,7 @@ var AdminPage = {
           post_id: this.selectedPost.id,
           featured: true
         }).then(function(response) {
-          console.log(response.data);
+          // console.log(response.data);
           this.selectedPost.featured_image = response.data;
         }.bind(this));
       }
@@ -213,7 +213,7 @@ var AdminPage = {
                 post_id: response.data.id
               };
               axios.post('/api/images', imageParams).then(function(response) {
-                console.log(response.data);
+                // console.log(response.data);
                 this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
               }.bind(this));
             } else {
@@ -275,25 +275,25 @@ var AdminPage = {
 
     deletePost: function() {
       axios.delete('/api/posts/' + this.selectedPost.id).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         this.posts.splice(this.posts.indexOf(this.selectedPost), 1);
       }.bind(this));
     },
     deleteReading: function() {
       axios.delete('/api/readings/' + this.selectedReading.id).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         this.readings.splice(this.readings.indexOf(this.selectedReading), 1);
       }.bind(this));
     },
     deleteReview: function() {
       axios.delete('/api/reviews/' + this.selectedReview.id).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         this.reviews.splice(this.reviews.indexOf(this.selectedReview), 1);
       }.bind(this));
     },
     deletePublication: function() {
       axios.delete('/api/publications/' + this.selectedPublication.id).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         this.publications.splice(this.publications.indexOf(this.selectedPublication), 1);
       }.bind(this));
     },
@@ -311,7 +311,7 @@ var AdminPage = {
 
     changeShowSection: function(section) {
       this.showSection = section;
-      console.log(this.showSection);
+      // console.log(this.showSection);
     },
 
     newAdditionalImage: function() {
@@ -339,11 +339,11 @@ var AdminPage = {
       axios
         .post("/api/sessions", params)
         .then(function(response) {
-          console.log(response.data);
+          // console.log(response.data);
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          console.log("Logged In");
+          // console.log("Logged In");
           this.loggedIn = true;
         }.bind(this))
         .catch(
@@ -373,11 +373,11 @@ var BlogShowPage = {
   created: function() {
     axios.get("/api/posts/" + this.$route.params.id).then(function(response) {
       this.post = response.data;
-      console.log(this.post.text.split("\n"));
+      // console.log(this.post.text.split("\n"));
       this.post.text = this.post.text.split("\n");
       if (this.post.comments[0]) {
-        console.log(this.post.comments);
-        console.log(this.post.comments[0]);
+        // console.log(this.post.comments);
+        // console.log(this.post.comments[0]);
         this.commentsExist = true;
       }
     }.bind(this));
@@ -463,7 +463,7 @@ var ContactPage = {
         text: this.inputMessage
       };
       axios.post('/api/questions', params).then(function(response) {
-        console.log('question sent');
+        // console.log('question sent');
       });
     }
   },
@@ -481,7 +481,7 @@ var ImagesPage = {
   created: function() {
     axios.get('/api/images').then(function(response) {
       this.images = response.data.reverse();
-      console.log(this.images);
+      // console.log(this.images);
     }.bind(this));
   },
   methods: {},
@@ -596,7 +596,7 @@ var BlogPage = {
   created: function() {
     axios.get('/api/posts').then(function(response) {
       this.posts = response.data.reverse();
-      console.log(this.posts);
+      // console.log(this.posts);
     }.bind(this));
   },
   methods: {},
