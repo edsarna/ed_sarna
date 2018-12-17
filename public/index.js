@@ -527,6 +527,7 @@ var ReviewsPage = {
           ratingArray.push(n);
         }
         this.reviews[i].rating = ratingArray;
+        this.reviews[i].text = this.reviews[i].text.split("\n");
       }
     }.bind(this));
   },
@@ -547,6 +548,7 @@ var PublicationShowPage = {
   created: function() {
     axios.get("/api/publications/" + this.$route.params.id).then(function(response) {
       this.publication = response.data;
+      this.publication.long_blurb = this.publication.long_blurb.split("\n");
       if (this.publication.awards.length > 0) {
         this.awardsExist = true;
       }

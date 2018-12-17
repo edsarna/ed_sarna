@@ -331,7 +331,7 @@
         </div>    
         <div class="col-md-6">
           <p><strong>{{ publication.title }}</strong></p>
-          <p>{{ publication.long_blurb }}</p>
+          <p v-for="paragraph in publication.long_blurb">{{ paragraph }}</p>
           <blockquote v-if="awardsExist">
             <div v-for="award in publication.awards">
               {{ award.title }} - {{ award.text }}
@@ -357,7 +357,7 @@
           <p>Rating: <span v-for="star in review.rating" class="yellow">★</span></p>
         </div>
         <div class="col-lg-7">
-          {{ review.text }}
+          <p v-for="paragraph in review.text">{{ paragraph }}</p>
         </div>
       </div>
     </div>
