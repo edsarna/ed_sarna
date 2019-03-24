@@ -51,6 +51,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "rest-client", ">= 1.8.0"
 gem "loofah", ">= 2.2.3"
 gem "rack", ">= 2.0.6"
+gem "actionview", ">= 5.2.2.1"
+gem "railties", ">= 5.2.2.1"
 
 gem 'pony', '~> 1.12'
 gem 'sendgrid-ruby'
