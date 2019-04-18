@@ -418,16 +418,14 @@ var AboutPage = {
   data: function() {
     return {
       message: "About Ed",
-      images: []
+      about: ""
     };
   },
   created: function() {
-    axios.get('/api/images').then(function(response) {
-      this.images = response.data;
+    axios.get('/api/text_blocks/2').then(function(response) {
+      this.about = response.data;
     }.bind(this));
-  },
-  methods: {},
-  computed: {}
+  }
 };
 
 var ContactPage = {
@@ -626,7 +624,8 @@ var HomePage = {
       postImage: null,
       storyImage: null,
       story: {},
-      recentImages: [{image_url: ""},{image_url: ""},{image_url: ""}]
+      recentImages: [{image_url: ""},{image_url: ""},{image_url: ""}],
+      tagline: ""
     };
   },
   created: function() {
@@ -645,9 +644,10 @@ var HomePage = {
         this.storyImage = this.story.image_url;
       }
     }.bind(this));
-  },
-  methods: {},
-  computed: {}
+    axios.get('/api/text_blocks/1').then(function(response) {
+      this.tagline = response.data;
+    }.bind(this));
+  }
 };
 
 var router = new VueRouter({
