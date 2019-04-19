@@ -308,8 +308,11 @@
             <a v-bind:href="'/#/stories/' + publication.id"><span class="bold">
               {{ publication.title }}
             </span></a> ({{ publication.media_type }})
-            <p>
+            <p v-if="publication.short_blurb.length > 0">
               {{ publication.short_blurb }}
+            </p>
+            <p v-else>
+              {{ publication.long_blurb }}
             </p>
           </div>
         </div>
