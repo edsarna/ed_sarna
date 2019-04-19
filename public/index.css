@@ -197,3 +197,8 @@ div.admin-section {
 .wider-textbox {
   width: 700px;
 }
+
+.homepage-blockquote {
+  max-height: 250px;
+  overflow: hidden;
+}
