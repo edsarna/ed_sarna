@@ -346,10 +346,10 @@ var AdminPage = {
 
     updateTextBlocks: function() {
       axios.patch('/api/text_blocks/1', {body: this.tagline.body}).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
       });
       axios.patch('/api/text_blocks/2', {body: this.about.body}).then(function(response) {
-        console.log(response.data);
+        // console.log(response.data);
       });
     },
 
