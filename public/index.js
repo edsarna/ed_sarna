@@ -59,7 +59,9 @@ var AdminPage = {
         image_url: "",
         pub_date: "",
         full_text: ""
-      }
+      },
+      about: "",
+      tagline: ""
     };
   },
   created: function() {
@@ -78,6 +80,12 @@ var AdminPage = {
     axios.get('/api/comments').then(function(response) {
       this.unapprovedComments = response.data.reverse();
       // console.log(this.unapprovedComments);
+    }.bind(this));
+    axios.get('/api/text_blocks/1').then(function(response) {
+      this.tagline = response.data;
+    }.bind(this));
+    axios.get('/api/text_blocks/2').then(function(response) {
+      this.about = response.data;
     }.bind(this));
   },
   methods: {

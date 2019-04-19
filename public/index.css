@@ -193,3 +193,7 @@ div.admin-section {
 .modal-dialog {
   padding-top: 5%;
 }
+
+.wider-textbox {
+  width: 700px;
+}

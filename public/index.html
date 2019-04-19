@@ -607,6 +607,7 @@
                     <li class="add-new-content"><a @click="changeShowSection('readings')">Readings</a></li>
                     <li class="add-new-content"><a @click="changeShowSection('reviews')">Reviews</a></li>
                     <li class="add-new-content"><a @click="changeShowSection('stories')">Stories</a></li>
+                    <li class="add-new-content"><a @click="changeShowSection('basic_content')">Basic Content</a></li>
                   </ul>
                 </div>
               </div>
@@ -614,6 +615,35 @@
           </div>
         </nav>
       </div> 
+      <div v-if="showSection === 'basic_content'" class="container"> <!-- COMMENTS -->
+        <h2 class="close-review">Basic Content</h2>
+        <div class="admin-section">
+          <h3>Tagline</h3>
+          <p>This appears at the top of the homepage</p>
+          <input class="wider-textbox" type="text" v-model="tagline.body">
+          <hr>
+          <h3>About Blurb</h3>
+          <p>This appears on the 'About Ed' page</p>
+          <textarea rows="8" cols="85" v-model="about.body"></textarea>
+          <p><button class="btn btn-success">Save Changes</button></p>
+          <!-- <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
+            <div class="col black">
+              <span class="bold">Posted by: {{ comment.commenter }}</span>
+              <span class="bold">(In reference to: {{ comment.post.title }})</span>
+              <p class="post-rows-edit-text">{{ comment.comment }}</p>
+              Post Modal Edit Button
+              <p>
+                <button @click="approveComment(comment)" type="button" class="btn btn-success">
+                  Approve This Comment
+                </button>
+                <button @click="deleteComment(comment)" type="button" class="btn btn-danger">
+                  Delete This Comment
+                </button>
+              </p>
+            </div>
+          </div> -->
+        </div>
+      </div>
       <div v-if="showSection === 'comments'" class="container"> <!-- COMMENTS -->
         <h2 class="close-review">Comments Pending Approval</h2>
         <div class="admin-section">
