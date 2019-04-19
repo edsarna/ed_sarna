@@ -625,23 +625,7 @@
           <h3>About Blurb</h3>
           <p>This appears on the 'About Ed' page</p>
           <textarea rows="8" cols="85" v-model="about.body"></textarea>
-          <p><button class="btn btn-success">Save Changes</button></p>
-          <!-- <div class="row space-below post-rows-edit" v-for="comment in unapprovedComments">
-            <div class="col black">
-              <span class="bold">Posted by: {{ comment.commenter }}</span>
-              <span class="bold">(In reference to: {{ comment.post.title }})</span>
-              <p class="post-rows-edit-text">{{ comment.comment }}</p>
-              Post Modal Edit Button
-              <p>
-                <button @click="approveComment(comment)" type="button" class="btn btn-success">
-                  Approve This Comment
-                </button>
-                <button @click="deleteComment(comment)" type="button" class="btn btn-danger">
-                  Delete This Comment
-                </button>
-              </p>
-            </div>
-          </div> -->
+          <p><button @click="updateTextBlocks()" class="btn btn-success">Save Changes</button></p>
         </div>
       </div>
       <div v-if="showSection === 'comments'" class="container"> <!-- COMMENTS -->

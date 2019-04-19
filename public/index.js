@@ -344,6 +344,15 @@ var AdminPage = {
       image.image_url = "//orange";
     },
 
+    updateTextBlocks: function() {
+      axios.patch('/api/text_blocks/1', {body: this.tagline.body}).then(function(response) {
+        console.log(response.data);
+      });
+      axios.patch('/api/text_blocks/2', {body: this.about.body}).then(function(response) {
+        console.log(response.data);
+      });
+    },
+
     // SIGN IN
     submit: function() {
       var params = {
