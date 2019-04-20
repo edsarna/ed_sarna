@@ -145,8 +145,11 @@
             <p>Read Ed Sarna's New Story...</p>
             <p><strong>{{ story.title }}</strong></p>
             <!-- <p>{{ story.short_blurb }}</p> -->
-            <blockquote class="homepage-blockquote">
+            <blockquote v-if="story.short_blurb && story.short_blurb.length > 0" class="homepage-blockquote">
               {{ story.short_blurb }}
+            </blockquote>
+            <blockquote v-else class="homepage-blockquote">
+              {{ story.long_blurb }}
             </blockquote>
             <a href="/#/stories" class="btn btn-skin btn-scroll">Read Now</a>
           </div>
