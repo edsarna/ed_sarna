@@ -645,9 +645,9 @@ var HomePage = {
     };
   },
   created: function() {
-    console.log('in the created function');
+    // console.log('in the created function');
     axios.get('/api/posts/last').then(function(response) {
-      console.log('got the last post');
+      // console.log('got the last post');
       this.post = response.data;
       if (this.post.images && this.post.images.length > 0) {
         this.postImage = this.post.images[0].image_url;
