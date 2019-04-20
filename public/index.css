@@ -202,3 +202,8 @@ div.admin-section {
   max-height: 250px;
   overflow: hidden;
 }
+
+.stories-block {
+  max-height: 150px;
+  overflow: hidden;
+}

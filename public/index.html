@@ -707,10 +707,10 @@
           <div class="row space-below post-rows-edit" v-for="publication in publications">
             <div class="col black">
               <span class="bold">{{ publication.title }} ({{ publication.media_type }})</span>
-              <p><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
-              <p><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
-              <p><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
-              <p><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
+              <p class="stories-block"><span class="bold">Short Blurb: </span>{{ publication.short_blurb }}</p>
+              <p class="stories-block"><span class="bold">Long Blurb: </span>{{ publication.long_blurb }}</p>
+              <p class="stories-block"><span class="bold">Publication Date: </span>{{ publication.pub_date }}</p>
+              <p class="stories-block"><span class="bold">Full Text: </span>{{ publication.full_text }}</p>
               <p><span class="bold">URL: </span>{{ publication.url }}</p>
               <!-- Publication Modal Edit Button -->
               <p><button @click="selectPublication(publication)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#publicationModal">
