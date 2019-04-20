@@ -208,3 +208,7 @@ div.admin-section {
   max-height: 150px;
   overflow: hidden;
 }
+
+.post-time {
+  float: right;
+}
