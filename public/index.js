@@ -636,7 +636,6 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome Ed Sarna's Website!",
       post: {},
       postImage: null,
       storyImage: null,
@@ -646,12 +645,16 @@ var HomePage = {
     };
   },
   created: function() {
+    console.log('in the created function');
     axios.get('/api/posts/last').then(function(response) {
+      console.log('got the last post');
       this.post = response.data;
       if (this.post.images && this.post.images.length > 0) {
         this.postImage = this.post.images[0].image_url;
       }
     }.bind(this));
+    // console.log(this.post);
+    // console.log(this.story);
     axios.get('/api/images/recent').then(function(response) {
       this.recentImages = response.data;
     }.bind(this));
