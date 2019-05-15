@@ -31,3 +31,4 @@ sendgrid.env
 /config/application.yml
 
 .env
+Procfile
