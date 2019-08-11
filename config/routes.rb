@@ -52,5 +52,8 @@ Rails.application.routes.draw do
     post '/comments' => 'comments#create'
     patch '/comments/:id' => 'comments#update'
     delete '/comments/:id' => 'comments#destroy'
+
+    get '/text_blocks/:id' => 'text_blocks#show'
+    patch '/text_blocks/:id' => 'text_blocks#update'
   end
 end

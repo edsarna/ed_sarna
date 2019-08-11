@@ -78,9 +78,18 @@
 # )
 
 
-User.create(
-  email: "ed@edsarna.com",
-  password: "password",
-  password_confirmation: "password",
-  name: "Ed"
-)
+# User.create(
+#   email: "ed@edsarna.com",
+#   password: "password",
+#   password_confirmation: "password",
+#   name: "Ed"
+# )
+
+# TextBlock.create(
+#   name: "tagline",
+#   body: "'Sensational...Sarna is this generation's Lee Child' -Lee Child"
+# )
+# TextBlock.create(
+#   name: "about",
+#   body: "Ed Sarna has been a U.S. Marine, actor, director and a number of other things not nearly as challenging. He grew up in Chicago, Illinois, spent more than a decade in Southern California and currently resides outside of Milwaukee, Wisconsin. Ed eventually received a BA in Theatre from California State University, Northridge, after being informed twice that he and Illinois State University might not be as good a fit as originally thought. He's received writing awards in fiction, humor and non-fiction from the Bo Carter Memorial, Jade Ring and Florence Lindemann Humor contests. His short story, BEST DAY EVER, was published in the Creative Wisconsin Literary Journal 2017. He is currently a member of Wisconsin Writers Association and Chicago Writers Association, where he is a reviewer with their book review service, Windy City Reviews."
+# )

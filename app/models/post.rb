@@ -17,4 +17,8 @@ class Post < ApplicationRecord
   def additional_images
     images.where(featured: false)
   end
+
+  def friendly_created_at
+    created_at.strftime("%b %d, %Y")
+  end
 end

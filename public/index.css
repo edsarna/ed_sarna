@@ -155,8 +155,9 @@ div.admin-section {
 }
 
 .subscription-section {
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 675px;
 }
 
 .add-new-content:hover {
@@ -192,4 +193,22 @@ div.admin-section {
 
 .modal-dialog {
   padding-top: 5%;
+}
+
+.wider-textbox {
+  width: 700px;
+}
+
+.homepage-blockquote {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.stories-block {
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.post-time {
+  float: right;
 }
