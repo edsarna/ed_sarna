@@ -331,7 +331,12 @@
         </div>    
         <div class="col-md-6">
           <p><strong>{{ publication.title }}</strong></p>
-          <p v-for="paragraph in publication.long_blurb">{{ paragraph }}</p>
+          <div v-if="publication.full_text">
+            <p v-for="paragraph in publication.full_text">{{ paragraph }}</p>
+          </div>
+          <div v-else>
+            <p v-for="paragraph in publication.long_blurb">{{ paragraph }}</p>
+          </div>
           <blockquote v-if="awardsExist">
             <div v-for="award in publication.awards">
               {{ award.title }} - {{ award.text }}
