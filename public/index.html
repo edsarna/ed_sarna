@@ -252,9 +252,15 @@
         </div>
         <div class="margin-right">
           <div>
-            <a v-bind:href="'/#/stories/' + publication.id"><span class="bold">
-              {{ publication.title }}
-            </span></a> ({{ publication.media_type }})
+            <a v-bind:href="'/#/stories/' + publication.id">
+              <span class="bold">
+                {{ publication.title }}
+              </span>
+            </a>
+            {{' '}}
+            <span v-if="publication.media_type">
+              ({{ publication.media_type }})
+            </span>
             <p v-if="publication.short_blurb.length > 0">
               {{ publication.short_blurb }}
             </p>
