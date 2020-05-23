@@ -281,7 +281,11 @@
         </div>    
         <div class="col-md-6">
           <p><strong>{{ publication.title }}</strong></p>
-          <div v-if="publication.full_text">{{ publication.full_text }}</div>
+          <div v-if="publication.full_text">
+            <div v-for="paragraph in publication.full_text">
+              {{ paragraph }}
+            </div>
+          </div>
           <div v-else>
             <p v-for="paragraph in publication.long_blurb">{{ paragraph }}</p>
           </div>

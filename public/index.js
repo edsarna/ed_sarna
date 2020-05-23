@@ -578,6 +578,7 @@ var PublicationShowPage = {
   created: function() {
     axios.get("/api/publications/" + this.$route.params.id).then(function(response) {
       this.publication = response.data;
+      this.publication.full_text = this.publication.full_text.split("\n");
       this.publication.long_blurb = this.publication.long_blurb.split("\n");
       if (this.publication.awards.length > 0) {
         this.awardsExist = true;
