@@ -4,10 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi, <%= @user.name || @user.email %>!</h1>
     <h1>New Post on <span style="font-weight: bold;">Sense or Nonsense</span></h1>
     <h3><a href='<%= "http://edsarna.com/#/posts/#{@post.id}" %>'><%= @post.title %></a></h3>
     <div style="max-height: 150px; overflow: hidden;"><%= @post.text %></div>
+    <div style="height: 100px"></div>
     <small><a href="http://edsarna.com/#/unsubscribe">Unsubscribe</a> to no longer receive posts from Ed Sarna</small>
   </body>
 </html>
