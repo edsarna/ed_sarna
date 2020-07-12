@@ -212,3 +212,7 @@ div.admin-section {
 .post-time {
   float: right;
 }
+
+.click-to-read {
+  margin: 3px 10px;
+}
