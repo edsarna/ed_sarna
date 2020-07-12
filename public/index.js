@@ -1,5 +1,25 @@
 /* global Vue, Vue2Filters, VueRouter, axios */
 
+var UnsubscribePage = {
+  template: "#unsubscribe-page",
+  data: function() {
+    return {
+      email: "",
+      unsubscribed: false
+    };
+  },
+  methods: {
+    unsubscribe: function() {
+      var params = {
+        email: this.email
+      };
+      axios.delete('/api/users', params).then(function(response) {
+        this.unsubscribed = true;
+      }.bind(this));
+    }
+  }
+};
+
 var AdminPage = {
   template: "#admin-page",
   data: function() {
@@ -650,7 +670,8 @@ var router = new VueRouter({
     { path: "/images", component: ImagesPage },
     { path: "/contact", component: ContactPage },
     { path: "/about", component: AboutPage },
-    { path: "/edmin", component: AdminPage }
+    { path: "/edmin", component: AdminPage },
+    { path: "/unsubscribe", component: UnsubscribePage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

@@ -23,4 +23,17 @@ class Api::UsersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @user = User.find_by(email: params[:email])
+    if @user 
+      if @user.destroy
+        render json: { message: "user removed" }
+      else
+        render json: {}, status: :unprocessable_entity
+      end
+    else
+      render json: { message: "user not found" }
+    end
+  end
 end

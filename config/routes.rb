@@ -43,7 +43,8 @@ Rails.application.routes.draw do
     delete '/awards/:id' => 'awards#destroy'
 
     post '/users' => 'users#create'
-    patch '/users' => 'users#update'
+    patch '/users' => 'users#update' # not RESTful
+    delete '/users' => 'users#destroy' # not RESTful
     post "/sessions" => "sessions#create"
 
     post '/questions' => 'questions#create'

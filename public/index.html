@@ -220,11 +220,12 @@
 <template id="blog-page">
   <div class="vue-component">
     <div class="container navbar-room">
+      <h3 class="bold post-rows">Sense or Nonsense</h3>
       <div class="row space-below post-rows" v-for="post in orderBy(posts, 'created_at', -1)">
       <!-- <div class="row space-below post-rows" v-for="post in posts"> -->
         <div class="bootstrap-card">
-          <div class="card-body">
-            <a v-bind:href="'/#/blog/' + post.id">
+          <a v-bind:href="'/#/blog/' + post.id">
+            <div class="card-body">
               <div class="col-sm-4" v-if="post.featured_image">
                 <img :src="post.featured_image.image_url" class="image-border gallery-image">
               </div>
@@ -233,11 +234,11 @@
                 <span class="bold">{{ post.title }}</span>
                 <p v-for="paragraph in post.text">{{ paragraph }}</p>
               </div>
-            </a>
-          </div>
-          <div class="card-footer text-right click-to-read">
-            <small class="text-muted">Click to read more</small>
-          </div>
+            </div>
+            <div class="card-footer text-right click-to-read">
+              <small class="text-muted">Click to read more</small>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -379,7 +380,7 @@
           <div class="col-md-4" style="text-align:center">Twitter</div>
           <div class="col-md-4" style="text-align:center">Facebook</div>
         </div> -->
-        <div class="navbar-room subscription-section">
+        <div class="navbar-room text-center">
           Name: <input class="subscription-input" type="text" v-model="name">
           Email: <input class="subscription-input" type="email" v-model="email">
           <a @click="addSubscriber" class="btn btn-skin btn-scroll">Subscribe to Ed's Blog</a>
@@ -956,4 +957,18 @@
       </div>
     </div>
   </div> 
+</template>
+
+<template id="unsubscribe-page">
+  <div class="vue-component">
+    <div class="navbar-room text-center">
+      <div v-if="unsubscribed">
+        Unsubscribe Successful
+      </div>
+      <div v-else>
+        <h3 class="bold">Unsubscribe from Sense or Nonsense</h3>
+        Email: <input class="subscription-input" type="text" v-model="email">
+        <a @click="unsubscribe" class="btn btn-skin btn-scroll">Unsubscribe from Ed's Blog</a>
+      </div>
+  </div>
 </template>
