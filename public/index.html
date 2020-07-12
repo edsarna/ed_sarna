@@ -231,7 +231,7 @@
               <div class="col black">
                 <p class="post-time">{{ post.friendly_created_at }}</p>
                 <span class="bold">{{ post.title }}</span>
-                <p>{{ post.text }}</p>
+                <p v-for="paragraph in post.text">{{ paragraph }}</p>
               </div>
             </a>
           </div>

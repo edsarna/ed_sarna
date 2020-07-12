@@ -79,7 +79,6 @@ var AdminPage = {
     }.bind(this));
     axios.get('/api/comments').then(function(response) {
       this.unapprovedComments = response.data.reverse();
-      // console.log(this.unapprovedComments);
     }.bind(this));
     axios.get('/api/text_blocks/1').then(function(response) {
       this.tagline = response.data;
@@ -92,19 +91,15 @@ var AdminPage = {
     selectPost: function(post) {
       this.newFeaturedImage = {imageUrl: ""};
       this.selectedPost = post;
-      // console.log(this.selectedPost);
     },
     selectReading: function(reading) {
       this.selectedReading = reading;
-      // console.log(this.selectedReading);
     },
     selectReview: function(review) {
       this.selectedReview = review;
-      // console.log(this.selectedPost);
     },
     selectPublication: function(publication) {
       this.selectedPublication = publication;
-      // console.log(this.selectedPost);
     },
 
     updatePost: function() {
@@ -118,7 +113,6 @@ var AdminPage = {
       // FEATURED IMAGE
       if (this.selectedPost.featured_image) {
         axios.patch('/api/images/' + this.selectedPost.featured_image.id, {image_url: this.selectedPost.featured_image.image_url}).then(function(response) {
-          // console.log('image updated too');
         });
       } else {
         axios.post('/api/images', {
@@ -126,7 +120,6 @@ var AdminPage = {
           post_id: this.selectedPost.id,
           featured: true
         }).then(function(response) {
-          // console.log(response.data);
           this.selectedPost.featured_image = response.data;
         }.bind(this));
       }
@@ -162,7 +155,6 @@ var AdminPage = {
         text: this.selectedReading.text
       };
       axios.patch('/api/readings/' + this.selectedReading.id, params).then(function(response) {
-        // console.log(response.data);
       });
     },
     updateReview: function() {
@@ -173,7 +165,6 @@ var AdminPage = {
         text: this.selectedReview.text
       };
       axios.patch('/api/reviews/' + this.selectedReview.id, params).then(function(response) {
-        // console.log(response.data);
       });
     },
     updatePublication: function() {
@@ -192,7 +183,6 @@ var AdminPage = {
         image_url: inputImage
       };
       axios.patch('/api/publications/' + this.selectedPublication.id, params).then(function(response) {
-        // console.log(response.data);
       });
     },
 
@@ -226,7 +216,6 @@ var AdminPage = {
                 post_id: response.data.id
               };
               axios.post('/api/images', imageParams).then(function(response) {
-                // console.log(response.data);
                 this.newPost.additionalImages.splice(this.newPost.additionalImages.indexOf(image), 1);
               }.bind(this));
             } else {
@@ -246,7 +235,6 @@ var AdminPage = {
         text: this.newReading.text
       };
       axios.post('/api/readings', params).then(function(response) {
-        // console.log(response.data);
         this.readings.unshift(response.data);
         this.newReading = {title: "", author: "", media_type: "", url: "", text: ""};
       }.bind(this));
@@ -259,7 +247,6 @@ var AdminPage = {
         text: this.newReview.text
       };
       axios.post('/api/reviews', params).then(function(response) {
-        // console.log(response.data);
         this.reviews.unshift(response.data);
         this.newReview = {title: "", item: "", rating: 0, text: ""};
       }.bind(this));
@@ -280,7 +267,6 @@ var AdminPage = {
         image_url: inputImage
       };
       axios.post('/api/publications', params).then(function(response) {
-        // console.log(response.data);
         this.publications.unshift(response.data);
         this.newPublication = {title: "", media_type: "", short_blurb: "", long_blurb: "", url: "", pub_date: "", full_text: ""};
       }.bind(this));
@@ -288,25 +274,21 @@ var AdminPage = {
 
     deletePost: function() {
       axios.delete('/api/posts/' + this.selectedPost.id).then(function(response) {
-        // console.log(response.data);
         this.posts.splice(this.posts.indexOf(this.selectedPost), 1);
       }.bind(this));
     },
     deleteReading: function() {
       axios.delete('/api/readings/' + this.selectedReading.id).then(function(response) {
-        // console.log(response.data);
         this.readings.splice(this.readings.indexOf(this.selectedReading), 1);
       }.bind(this));
     },
     deleteReview: function() {
       axios.delete('/api/reviews/' + this.selectedReview.id).then(function(response) {
-        // console.log(response.data);
         this.reviews.splice(this.reviews.indexOf(this.selectedReview), 1);
       }.bind(this));
     },
     deletePublication: function() {
       axios.delete('/api/publications/' + this.selectedPublication.id).then(function(response) {
-        // console.log(response.data);
         this.publications.splice(this.publications.indexOf(this.selectedPublication), 1);
       }.bind(this));
     },
@@ -324,7 +306,6 @@ var AdminPage = {
 
     changeShowSection: function(section) {
       this.showSection = section;
-      // console.log(this.showSection);
     },
 
     newAdditionalImage: function() {
@@ -346,10 +327,8 @@ var AdminPage = {
 
     updateTextBlocks: function() {
       axios.patch('/api/text_blocks/1', {body: this.tagline.body}).then(function(response) {
-        // console.log(response.data);
       });
       axios.patch('/api/text_blocks/2', {body: this.about.body}).then(function(response) {
-        // console.log(response.data);
       });
     },
 
@@ -361,11 +340,9 @@ var AdminPage = {
       axios
         .post("/api/sessions", params)
         .then(function(response) {
-          // console.log(response.data);
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          // console.log("Logged In");
           this.loggedIn = true;
         }.bind(this))
         .catch(
@@ -382,7 +359,6 @@ var AdminPage = {
         old_password: this.newPassword.oldPassword,
         new_password: this.newPassword.newPassword
       }).then(function(response) {
-        console.log(response.data);
       });
     }
   },
@@ -404,11 +380,8 @@ var BlogShowPage = {
   created: function() {
     axios.get("/api/posts/" + this.$route.params.id).then(function(response) {
       this.post = response.data;
-      // console.log(this.post.text.split("\n"));
       this.post.text = this.post.text.split("\n");
       if (this.post.comments[0]) {
-        // console.log(this.post.comments);
-        // console.log(this.post.comments[0]);
         this.commentsExist = true;
       }
     }.bind(this));
@@ -483,16 +456,12 @@ var ContactPage = {
       }
     },
     submitForm: function() {
-      // console.log(this.inputName);
-      // console.log(this.inputEmail);
-      // console.log(this.inputMessage);
       var params = {
         name: this.inputName,
         email: this.inputName,
         text: this.inputMessage
       };
       axios.post('/api/questions', params).then(function(response) {
-        // console.log('question sent');
       });
     }
   },
@@ -510,7 +479,6 @@ var ImagesPage = {
   created: function() {
     axios.get('/api/images').then(function(response) {
       this.images = response.data.reverse();
-      // console.log(this.images);
     }.bind(this));
   },
   methods: {},
@@ -626,7 +594,10 @@ var BlogPage = {
   created: function() {
     axios.get('/api/posts').then(function(response) {
       this.posts = response.data.reverse();
-      // console.log(this.posts);
+      this.posts = this.posts.map((post) => {
+        post.text = post.text.split("\n");
+        return post;
+      });
     }.bind(this));
   },
   methods: {},
@@ -646,16 +617,12 @@ var HomePage = {
     };
   },
   created: function() {
-    // console.log('in the created function');
     axios.get('/api/posts/last').then(function(response) {
-      // console.log('got the last post');
       this.post = response.data;
       if (this.post.images && this.post.images.length > 0) {
         this.postImage = this.post.images[0].image_url;
       }
     }.bind(this));
-    // console.log(this.post);
-    // console.log(this.story);
     axios.get('/api/images/recent').then(function(response) {
       this.recentImages = response.data;
     }.bind(this));

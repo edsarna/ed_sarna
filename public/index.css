@@ -58,8 +58,8 @@
 }
 
 .card-body {
-  padding: 20px;
-  max-height: 500px;
+  padding: 20px;  
+  max-height: 250px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
