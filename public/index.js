@@ -491,22 +491,22 @@ var ContactPage = {
   computed: {}
 };
 
-var ImagesPage = {
-  template: "#images-page",
-  data: function() {
-    return {
-      message: "Images Page!",
-      images: []
-    };
-  },
-  created: function() {
-    axios.get('/api/images').then(function(response) {
-      this.images = response.data.reverse();
-    }.bind(this));
-  },
-  methods: {},
-  computed: {}
-};
+// var ImagesPage = {
+//   template: "#images-page",
+//   data: function() {
+//     return {
+//       message: "Images Page!",
+//       images: []
+//     };
+//   },
+//   created: function() {
+//     axios.get('/api/images').then(function(response) {
+//       this.images = response.data.reverse();
+//     }.bind(this));
+//   },
+//   methods: {},
+//   computed: {}
+// };
 
 var ReadingsPage = {
   template: "#readings-page",
@@ -530,31 +530,31 @@ var ReadingsPage = {
   computed: {}
 };
 
-var ReviewsPage = {
-  template: "#reviews-page",
-  mixins: [Vue2Filters.mixin],
-  data: function() {
-    return {
-      message: "Reviews Page!",
-      reviews: []
-    };
-  },
-  created: function() {
-    axios.get('/api/reviews').then(function(response) {
-      this.reviews = response.data.reverse();
-      for (var i = 0;i < this.reviews.length; i++) {
-        var ratingArray = [];
-        for (var n = 1; n <= this.reviews[i].rating; n++) {
-          ratingArray.push(n);
-        }
-        this.reviews[i].rating = ratingArray;
-        this.reviews[i].text = this.reviews[i].text.split("\n");
-      }
-    }.bind(this));
-  },
-  methods: {},
-  computed: {}
-};
+// var ReviewsPage = {
+//   template: "#reviews-page",
+//   mixins: [Vue2Filters.mixin],
+//   data: function() {
+//     return {
+//       message: "Reviews Page!",
+//       reviews: []
+//     };
+//   },
+//   created: function() {
+//     axios.get('/api/reviews').then(function(response) {
+//       this.reviews = response.data.reverse();
+//       for (var i = 0;i < this.reviews.length; i++) {
+//         var ratingArray = [];
+//         for (var n = 1; n <= this.reviews[i].rating; n++) {
+//           ratingArray.push(n);
+//         }
+//         this.reviews[i].rating = ratingArray;
+//         this.reviews[i].text = this.reviews[i].text.split("\n");
+//       }
+//     }.bind(this));
+//   },
+//   methods: {},
+//   computed: {}
+// };
 
 var PublicationShowPage = {
   template: "#publication-show-page",
@@ -668,9 +668,9 @@ var router = new VueRouter({
     { path: "/blog/:id", component: BlogShowPage },
     { path: "/stories", component: PublicationsPage },
     { path: "/stories/:id", component: PublicationShowPage },
-    { path: "/reviews", component: ReviewsPage },
+    // { path: "/reviews", component: ReviewsPage },
     { path: "/readings", component: ReadingsPage },
-    { path: "/images", component: ImagesPage },
+    // { path: "/images", component: ImagesPage },
     { path: "/contact", component: ContactPage },
     { path: "/about", component: AboutPage },
     { path: "/edmin", component: AdminPage },
