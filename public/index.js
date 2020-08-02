@@ -53,6 +53,7 @@ var AdminPage = {
 
       newPost: {
         title: "",
+        publication_date: "",
         text: "",
         featured_image_url: "",
         additionalImages: []
@@ -125,7 +126,8 @@ var AdminPage = {
     updatePost: function() {
       var params = {
         title: this.selectedPost.title,
-        text: this.selectedPost.text
+        text: this.selectedPost.text,
+        publication_date: this.selectedPost.publication_date
       };
       axios.patch('/api/posts/' + this.selectedPost.id, params).then(function(response) {
       });
@@ -209,7 +211,8 @@ var AdminPage = {
     addPost: function() {
       var params = {
         title: this.newPost.title,
-        text: this.newPost.text
+        text: this.newPost.text,
+        publication_date: this.newPost.publication_date
       };
       axios.post('/api/posts', params).then(function(response) {
         this.posts.unshift(response.data);

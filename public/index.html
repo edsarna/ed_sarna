@@ -230,7 +230,7 @@
                 <img :src="post.featured_image.image_url" class="image-border gallery-image">
               </div>
               <div class="col black">
-                <p class="post-time">{{ post.friendly_created_at }}</p>
+                <p class="post-time">{{ post.publication_date || post.friendly_created_at }}</p>
                 <span class="bold">{{ post.title }}</span>
                 <p v-for="paragraph in post.text">{{ paragraph }}</p>
               </div>
@@ -803,6 +803,7 @@
 
             <div class="modal-body">
               <p>Title:</p><p><input type="text" v-model="newPost.title"></p>
+              <p>Publication Date:</p><p><input type="text" v-model="newPost.publication_date"></p>
               <p>Body:</p><p><textarea rows="8" cols="65" v-model="newPost.text"></textarea></p>
               <p>Featured Image Url:</p><p><input type="text" v-model="newPost.featured_image_url"></p>
               <p v-for="image in newPost.additionalImages">
