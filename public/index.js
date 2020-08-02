@@ -61,6 +61,7 @@ var AdminPage = {
       newReading: {
         title: "",
         author: "",
+        reading_date: "",
         media_type: "",
         url: "",
         text: ""
@@ -172,6 +173,7 @@ var AdminPage = {
       var params = {
         title: this.selectedReading.title,
         author: this.selectedReading.author,
+        reading_date: this.selectedReading.reading_date,
         media_type: this.selectedReading.media_type,
         url: this.selectedReading.url,
         text: this.selectedReading.text
@@ -253,6 +255,7 @@ var AdminPage = {
       var params = {
         title: this.newReading.title,
         author: this.newReading.author,
+        reading_date: this.newReading.reading_date,
         media_type: this.newReading.media_type,
         url: this.newReading.url,
         text: this.newReading.text
@@ -666,8 +669,8 @@ var router = new VueRouter({
     { path: "/", component: HomePage },
     { path: "/blog", component: BlogPage },
     { path: "/blog/:id", component: BlogShowPage },
-    { path: "/stories", component: PublicationsPage },
-    { path: "/stories/:id", component: PublicationShowPage },
+    { path: "/writings", component: PublicationsPage },
+    { path: "/writings/:id", component: PublicationShowPage },
     // { path: "/reviews", component: ReviewsPage },
     { path: "/readings", component: ReadingsPage },
     // { path: "/images", component: ImagesPage },
