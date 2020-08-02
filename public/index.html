@@ -265,7 +265,7 @@
             <span v-if="publication.media_type">
               ({{ publication.media_type }})
             </span>
-            <p v-if="publication.short_blurb.length > 0">
+            <p v-if="publication.short_blurb && publication.short_blurb.length > 0">
               {{ publication.short_blurb }}
             </p>
             <p v-else>
