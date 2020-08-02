@@ -337,7 +337,7 @@
     <div class="container navbar-room">
       <div v-for="reading in orderBy(readings, 'created_at', -1)" class=" reading-rows">
         <p class="post-time">{{ reading.friendly_created_at }}</p>
-        <span class="bold">{{ reading.media_type }}: {{ reading.title }}</span>
+        <span class="bold">{{ reading.media_type && reading.media_type + ': ' }}{{ reading.title }}</span>
         <p class="black" v-for="paragraph in reading.text">{{ paragraph }}</p>
       </div>
     </div>
@@ -696,6 +696,7 @@
             </div>
             <div class="modal-body">
               <p>Title:</p><p><input type="text" v-model="selectedPost.title"></p>
+              <p>Publication Date:</p><p><input type="text" v-model="selectedPost.publication_date"></p>
               <p>Body:</p><p><textarea rows="8" cols="65" v-model="selectedPost.text"></textarea></p>
               <div v-if="selectedPost.featured_image">
                 <p>Featured Image URL:</p>
