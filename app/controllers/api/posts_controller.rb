@@ -34,6 +34,7 @@ class Api::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.title = params[:title] || @post.title
     @post.text = params[:text] || @post.text
+    @post.publication_date = params[:publication_date] || @post.publication_date
     @post.save
     render 'show.json.jbuilder'
   end

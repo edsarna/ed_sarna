@@ -230,7 +230,7 @@
                 <img :src="post.featured_image.image_url" class="image-border gallery-image">
               </div>
               <div class="col black">
-                <p class="post-time">{{ post.publication_date || post.friendly_created_at }}</p>
+                <p class="post-time">{{ post.publication_date }}</p>
                 <span class="bold">{{ post.title }}</span>
                 <p v-for="paragraph in post.text">{{ paragraph }}</p>
               </div>
